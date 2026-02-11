@@ -104,6 +104,11 @@ foreign import listbox :: forall r. ReactComponent { | r }
 foreign import listboxSection :: forall r. ReactComponent { | r }
 foreign import listboxItem :: forall r. ReactComponent { | r }
 
+-- Menu
+foreign import menu :: forall r. ReactComponent { | r }
+foreign import menuItem :: forall r. ReactComponent { | r }
+foreign import menuSection :: forall r. ReactComponent { | r }
+
 -- Modal
 foreign import modal :: forall r. ReactComponent { | r }
 foreign import modalContent :: forall r. ReactComponent { | r }
@@ -190,3 +195,6 @@ foreign import tooltip :: forall r. ReactComponent { | r }
 
 -- User
 foreign import user :: forall r. ReactComponent { | r }
+
+-- VisuallyHidden
+foreign import visuallyHidden :: forall r. ReactComponent { | r }

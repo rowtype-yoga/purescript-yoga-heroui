@@ -24,6 +24,7 @@ module HeroUI
   , module HeroUI.Kbd
   , module HeroUI.Link
   , module HeroUI.Listbox
+  , module HeroUI.Menu
   , module HeroUI.Modal
   , module HeroUI.Navbar
   , module HeroUI.NumberInput
@@ -46,6 +47,7 @@ module HeroUI
   , module HeroUI.Toast
   , module HeroUI.Tooltip
   , module HeroUI.User
+  , module HeroUI.VisuallyHidden
   ) where
 
 import HeroUI.Types (Align(..), Backdrop(..), Color(..), LabelPlacement(..), Orientation(..), Placement(..), Radius(..), ScrollBehavior(..), SelectionBehavior(..), SelectionMode(..), ShadowSize(..), Size(..), UnderlineStyle(..), ValidationBehavior(..), Variant(..))
@@ -73,6 +75,7 @@ import HeroUI.InputOTP (InputOtpProps, TextAlign(..), inputOtp)
 import HeroUI.Kbd (KbdKey(..), KbdProps, kbd)
 import HeroUI.Link (LinkProps, link)
 import HeroUI.Listbox (ListboxItemProps, ListboxProps, ListboxSectionProps, listbox, listboxItem, listboxSection)
+import HeroUI.Menu (MenuItemProps, MenuProps, MenuSectionProps, menu, menuItem, menuSection)
 import HeroUI.Modal (ModalBodyProps, ModalContentProps, ModalFooterProps, ModalHeaderProps, ModalProps, modal, modalBody, modalContent, modalFooter, modalHeader)
 import HeroUI.Navbar (MaxWidth(..), NavbarBrandProps, NavbarContentProps, NavbarItemProps, NavbarJustify(..), NavbarMenuItemProps, NavbarMenuProps, NavbarMenuToggleProps, NavbarProps, Position(..), navbar, navbarBrand, navbarContent, navbarItem, navbarMenu, navbarMenuItem, navbarMenuToggle)
 import HeroUI.NumberInput (NumberInputProps, numberInput)
@@ -95,3 +98,4 @@ import HeroUI.Tabs (KeyboardActivation(..), TabProps, TabsProps, tab, tabs)
 import HeroUI.Toast (ToastProps, ToastProviderProps, toast, toastProvider)
 import HeroUI.Tooltip (TooltipProps, tooltip)
 import HeroUI.User (UserProps, user)
+import HeroUI.VisuallyHidden (VisuallyHiddenProps, visuallyHidden)
