@@ -13,7 +13,7 @@ package:
     - react-basic-hooks: ">=9.0.0 <10.0.0"
     - unsafe-coerce: ">=6.0.0 <7.0.0"
     - yoga-react: ">=1.0.1 <2.0.0"
-    - yoga-react-dom: ">=1.0.1 <2.0.0"
+    - yoga-react-dom: ">=1.0.3 <2.0.0"
   publish:
     version: 1.0.0
     license: WTFPL
