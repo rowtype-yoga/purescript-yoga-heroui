@@ -39,7 +39,7 @@
               "unsafe-coerce": ">=6.0.0 <7.0.0"
             },
             {
-              "yoga-react": ">=1.0.0 <2.0.0"
+              "yoga-react": ">=1.0.1 <2.0.0"
             },
             {
               "yoga-react-dom": ">=1.0.1 <2.0.0"
@@ -645,7 +645,7 @@
     "extra_packages": {
       "yoga-react": {
         "git": "https://github.com/rowtype-yoga/purescript-yoga-react.git",
-        "ref": "v1.0.0"
+        "ref": "v1.0.1"
       }
     }
   },
@@ -1520,7 +1520,7 @@
     "yoga-react": {
       "type": "git",
       "url": "https://github.com/rowtype-yoga/purescript-yoga-react.git",
-      "rev": "e46fc8e73340077389871262ffb964c9c08df4a7",
+      "rev": "76ce3f907dcf193dab192553ae7f38e5607db95b",
       "dependencies": [
         "effect",
         "prelude",
