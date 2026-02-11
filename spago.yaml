@@ -1,18 +1,11 @@
 package:
   name: yoga-heroui
   dependencies:
-    - arrays: ">=7.3.0 <8.0.0"
     - effect: ">=4.0.0 <5.0.0"
     - foreign: ">=7.0.0 <8.0.0"
     - functions: ">=6.0.0 <7.0.0"
-    - maybe: ">=6.0.0 <7.0.0"
-    - nullable: ">=6.0.0 <7.0.0"
     - prelude: ">=6.0.2 <7.0.0"
     - react-basic: ">=17.0.0 <18.0.0"
-    - react-basic-dom: ">=7.0.0 <8.0.0"
-    - react-basic-hooks: ">=9.0.0 <10.0.0"
-    - unsafe-coerce: ">=6.0.0 <7.0.0"
-    - yoga-react: ">=1.0.1 <2.0.0"
     - yoga-react-dom: ">=1.0.3 <2.0.0"
   publish:
     version: 1.0.0
@@ -23,7 +16,3 @@ package:
 workspace:
   packageSet:
     registry: 73.0.0
-  extraPackages:
-    yoga-react:
-      git: https://github.com/rowtype-yoga/purescript-yoga-react.git
-      ref: v1.0.1
