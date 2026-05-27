@@ -2,12 +2,12 @@ module HeroUI.Tabs where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps, createElementImpl)
+import Yoga.React.DOM.Internal (class IsJSX, createElementImpl)
 import Data.Function.Uncurried (runFn3, runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Color, Placement, Radius, Size, Variant, colorToString, placementToString, radiusToString, sizeToString, variantToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 data KeyboardActivation = KbAutomatic | KbManual
@@ -47,7 +47,7 @@ type TabsProps r =
 tabs
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | TabsProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | TabsProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -72,7 +72,7 @@ type TabProps r =
 tab
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | TabProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | TabProps () }
   => { | givenProps }
   -> kids
   -> JSX

@@ -3,12 +3,12 @@ module HeroUI.Breadcrumbs where
 import Prelude
 import React.Basic (JSX)
 import React.Basic.Events (EventHandler)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Color, Radius, Size, UnderlineStyle, Variant, colorToString, radiusToString, sizeToString, underlineToString, variantToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type BreadcrumbsProps r =
@@ -34,7 +34,7 @@ type BreadcrumbsProps r =
 breadcrumbs
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | BreadcrumbsProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | BreadcrumbsProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -69,7 +69,7 @@ type BreadcrumbItemProps r =
 breadcrumbItem
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | BreadcrumbItemProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | BreadcrumbItemProps () }
   => { | givenProps }
   -> kids
   -> JSX

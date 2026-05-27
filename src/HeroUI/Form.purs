@@ -2,11 +2,11 @@ module HeroUI.Form where
 
 import React.Basic (JSX)
 import React.Basic.Events (EventHandler)
-import Yoga.React.DOM.Internal (CSS, class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (CSS, class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Foreign (Foreign)
 import HeroUI.Types (ValidationBehavior, validationBehaviorToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type FormProps r =
@@ -28,7 +28,7 @@ type FormProps r =
 form
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | FormProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | FormProps () }
   => { | givenProps }
   -> kids
   -> JSX

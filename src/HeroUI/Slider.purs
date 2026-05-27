@@ -2,12 +2,12 @@ module HeroUI.Slider where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Color, Orientation, Radius, Size, colorToString, orientationToString, radiusToString, sizeToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type SliderProps r =
@@ -52,7 +52,7 @@ type SliderProps r =
 slider
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | SliderProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | SliderProps () }
   => { | givenProps }
   -> kids
   -> JSX

@@ -2,12 +2,12 @@ module HeroUI.Input where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Color, LabelPlacement, Radius, Size, ValidationBehavior, Variant, colorToString, labelPlacementToString, radiusToString, sizeToString, validationBehaviorToString, variantToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type InputProps r =
@@ -50,7 +50,7 @@ type InputProps r =
 input
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | InputProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | InputProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -98,7 +98,7 @@ type TextareaProps r =
 textarea
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | TextareaProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | TextareaProps () }
   => { | givenProps }
   -> kids
   -> JSX

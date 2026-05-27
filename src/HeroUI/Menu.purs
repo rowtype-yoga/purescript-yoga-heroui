@@ -3,12 +3,12 @@ module HeroUI.Menu where
 import Prelude
 import React.Basic (JSX)
 import React.Basic.Events (EventHandler)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps, createElementImpl)
+import Yoga.React.DOM.Internal (class IsJSX, createElementImpl)
 import Data.Function.Uncurried (runFn3, runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Color, SelectionMode, Variant, colorToString, selectionModeToString, variantToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type MenuProps r =
@@ -41,7 +41,7 @@ type MenuProps r =
 menu
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | MenuProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | MenuProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -66,7 +66,7 @@ type MenuSectionProps r =
 menuSection
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | MenuSectionProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | MenuSectionProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -108,7 +108,7 @@ type MenuItemProps r =
 menuItem
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | MenuItemProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | MenuItemProps () }
   => { | givenProps }
   -> kids
   -> JSX

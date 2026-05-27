@@ -3,12 +3,12 @@ module HeroUI.Card where
 import Prelude
 import React.Basic (JSX)
 import React.Basic.Events (EventHandler)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps, createElementImpl)
+import Yoga.React.DOM.Internal (class IsJSX, createElementImpl)
 import Data.Function.Uncurried (runFn3, runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Radius, ShadowSize, radiusToString, shadowToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type CardProps r =
@@ -36,7 +36,7 @@ type CardProps r =
 card
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | CardProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | CardProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -52,7 +52,7 @@ type CardHeaderProps r =
 cardHeader
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | CardHeaderProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | CardHeaderProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -66,7 +66,7 @@ type CardBodyProps r =
 cardBody
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | CardBodyProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | CardBodyProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -81,7 +81,7 @@ type CardFooterProps r =
 cardFooter
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | CardFooterProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | CardFooterProps () }
   => { | givenProps }
   -> kids
   -> JSX

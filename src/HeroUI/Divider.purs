@@ -1,10 +1,10 @@
 module HeroUI.Divider where
 
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import HeroUI.Types (Orientation, orientationToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type DividerProps r =
@@ -16,7 +16,7 @@ type DividerProps r =
 divider
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | DividerProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | DividerProps () }
   => { | givenProps }
   -> kids
   -> JSX

@@ -25,11 +25,11 @@ derive instance Generic Size _
 data Backdrop = Transparent | Opaque | Blur
 derive instance Generic Backdrop _
 
-toSize :: Size -> T.Size
+toSize :: Size -> T.ModalSize
 toSize = case _ of
-  Small -> T.Sm
-  Medium -> T.Md
-  Large -> T.Lg
+  Small -> T.ModalSizeSm
+  Medium -> T.ModalSizeMd
+  Large -> T.ModalSizeLg
 
 toBackdrop :: Backdrop -> T.Backdrop
 toBackdrop = case _ of

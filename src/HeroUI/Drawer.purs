@@ -2,16 +2,16 @@ module HeroUI.Drawer where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps, createElementImpl)
+import Yoga.React.DOM.Internal (class IsJSX, createElementImpl)
 import Data.Function.Uncurried (runFn3, runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
-import HeroUI.Types (Placement, Radius, Size, placementToString, radiusToString, sizeToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Types (ModalSize, Placement, Radius, modalSizeToString, placementToString, radiusToString)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type DrawerProps r =
-  ( size :: Size
+  ( size :: ModalSize
   , radius :: Radius
   , placement :: Placement
   , isOpen :: Boolean
@@ -34,12 +34,12 @@ type DrawerProps r =
 drawer
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | DrawerProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | DrawerProps () }
   => { | givenProps }
   -> kids
   -> JSX
 drawer props kids = runFn4 createElementTransformImpl
-  { size: sizeToString, radius: radiusToString, placement: placementToString }
+  { size: modalSizeToString, radius: radiusToString, placement: placementToString }
   Raw.drawer props kids
 
 type DrawerContentProps r =
@@ -48,7 +48,7 @@ type DrawerContentProps r =
 drawerContent
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | DrawerContentProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | DrawerContentProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -60,7 +60,7 @@ type DrawerHeaderProps r =
 drawerHeader
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | DrawerHeaderProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | DrawerHeaderProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -72,7 +72,7 @@ type DrawerBodyProps r =
 drawerBody
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | DrawerBodyProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | DrawerBodyProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -84,7 +84,7 @@ type DrawerFooterProps r =
 drawerFooter
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | DrawerFooterProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | DrawerFooterProps () }
   => { | givenProps }
   -> kids
   -> JSX

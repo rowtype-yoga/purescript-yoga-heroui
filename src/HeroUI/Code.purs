@@ -1,10 +1,10 @@
 module HeroUI.Code where
 
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import HeroUI.Types (Color, Radius, Size, colorToString, radiusToString, sizeToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type CodeProps r =
@@ -18,7 +18,7 @@ type CodeProps r =
 code
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | CodeProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | CodeProps () }
   => { | givenProps }
   -> kids
   -> JSX

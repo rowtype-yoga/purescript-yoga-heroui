@@ -3,12 +3,12 @@ module HeroUI.Listbox where
 import Prelude
 import React.Basic (JSX)
 import React.Basic.Events (EventHandler)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps, createElementImpl)
+import Yoga.React.DOM.Internal (class IsJSX, createElementImpl)
 import Data.Function.Uncurried (runFn3, runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Color, SelectionBehavior, SelectionMode, Variant, colorToString, selectionBehaviorToString, selectionModeToString, variantToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type ListboxProps r =
@@ -43,7 +43,7 @@ type ListboxProps r =
 listbox
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | ListboxProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | ListboxProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -66,7 +66,7 @@ type ListboxSectionProps r =
 listboxSection
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | ListboxSectionProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | ListboxSectionProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -110,7 +110,7 @@ type ListboxItemProps r =
 listboxItem
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | ListboxItemProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | ListboxItemProps () }
   => { | givenProps }
   -> kids
   -> JSX

@@ -1,7 +1,8 @@
 module HeroUI.User where
 
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps, createElementImpl)
+import Yoga.React.DOM.Internal (class IsJSX, createElementImpl)
+import HeroUI.Internal (class CoerceHeroProps)
 import Data.Function.Uncurried (runFn3)
 import Foreign (Foreign)
 import HeroUI.Raw as Raw
@@ -19,7 +20,7 @@ type UserProps r =
 user
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | UserProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | UserProps () }
   => { | givenProps }
   -> kids
   -> JSX

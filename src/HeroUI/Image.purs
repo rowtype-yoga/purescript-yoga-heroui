@@ -3,11 +3,11 @@ module HeroUI.Image where
 import Prelude
 import React.Basic (JSX)
 import React.Basic.Events (EventHandler)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Foreign (Foreign)
 import HeroUI.Types (Radius, ShadowSize, radiusToString, shadowToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 data Loading = Eager | Lazy
@@ -45,7 +45,7 @@ type ImageProps r =
 image
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | ImageProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | ImageProps () }
   => { | givenProps }
   -> kids
   -> JSX

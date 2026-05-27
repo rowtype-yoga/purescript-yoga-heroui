@@ -2,12 +2,12 @@ module HeroUI.Checkbox where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Color, Orientation, Radius, Size, ValidationBehavior, colorToString, orientationToString, radiusToString, sizeToString, validationBehaviorToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type CheckboxProps r =
@@ -36,7 +36,7 @@ type CheckboxProps r =
 checkbox
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | CheckboxProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | CheckboxProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -73,7 +73,7 @@ type CheckboxGroupProps r =
 checkboxGroup
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | CheckboxGroupProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | CheckboxGroupProps () }
   => { | givenProps }
   -> kids
   -> JSX

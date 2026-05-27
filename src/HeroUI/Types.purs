@@ -27,6 +27,36 @@ sizeToString = case _ of
   Md -> "md"
   Lg -> "lg"
 
+-- | Modal/Drawer accept a wider set of sizes than the standard `Size`.
+-- | See https://heroui.com/docs/components/modal#modal-props
+data ModalSize
+  = ModalSizeXs
+  | ModalSizeSm
+  | ModalSizeMd
+  | ModalSizeLg
+  | ModalSizeXl
+  | ModalSize2xl
+  | ModalSize3xl
+  | ModalSize4xl
+  | ModalSize5xl
+  | ModalSizeFull
+
+derive instance Eq ModalSize
+derive instance Ord ModalSize
+
+modalSizeToString :: ModalSize -> String
+modalSizeToString = case _ of
+  ModalSizeXs -> "xs"
+  ModalSizeSm -> "sm"
+  ModalSizeMd -> "md"
+  ModalSizeLg -> "lg"
+  ModalSizeXl -> "xl"
+  ModalSize2xl -> "2xl"
+  ModalSize3xl -> "3xl"
+  ModalSize4xl -> "4xl"
+  ModalSize5xl -> "5xl"
+  ModalSizeFull -> "full"
+
 data Radius = RadiusNone | RadiusSm | RadiusMd | RadiusLg | RadiusFull
 
 derive instance Eq Radius

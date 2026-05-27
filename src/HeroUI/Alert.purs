@@ -2,12 +2,12 @@ module HeroUI.Alert where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Color, Radius, Variant, colorToString, radiusToString, variantToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type AlertProps r =
@@ -34,7 +34,7 @@ type AlertProps r =
 alert
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | AlertProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | AlertProps () }
   => { | givenProps }
   -> kids
   -> JSX

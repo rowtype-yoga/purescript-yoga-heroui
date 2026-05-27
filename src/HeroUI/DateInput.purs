@@ -3,12 +3,12 @@ module HeroUI.DateInput where
 import Prelude
 import React.Basic (JSX)
 import React.Basic.Events (EventHandler)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Color, LabelPlacement, Radius, Size, ValidationBehavior, Variant, colorToString, labelPlacementToString, radiusToString, sizeToString, validationBehaviorToString, variantToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 data Granularity = GranDay | GranHour | GranMinute | GranSecond
@@ -61,7 +61,7 @@ type DateInputProps r =
 dateInput
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | DateInputProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | DateInputProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -110,7 +110,7 @@ type TimeInputProps r =
 timeInput
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | TimeInputProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | TimeInputProps () }
   => { | givenProps }
   -> kids
   -> JSX

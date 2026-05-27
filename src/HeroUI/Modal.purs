@@ -2,16 +2,16 @@ module HeroUI.Modal where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps, createElementImpl)
+import Yoga.React.DOM.Internal (class IsJSX, createElementImpl)
 import Data.Function.Uncurried (runFn3, runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
-import HeroUI.Types (Backdrop, Placement, Radius, ScrollBehavior, ShadowSize, Size, backdropToString, placementToString, radiusToString, scrollBehaviorToString, shadowToString, sizeToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Types (Backdrop, ModalSize, Placement, Radius, ScrollBehavior, ShadowSize, backdropToString, modalSizeToString, placementToString, radiusToString, scrollBehaviorToString, shadowToString)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type ModalProps r =
-  ( size :: Size
+  ( size :: ModalSize
   , radius :: Radius
   , shadow :: ShadowSize
   , backdrop :: Backdrop
@@ -37,12 +37,12 @@ type ModalProps r =
 modal
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | ModalProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | ModalProps () }
   => { | givenProps }
   -> kids
   -> JSX
 modal props kids = runFn4 createElementTransformImpl
-  { size: sizeToString, radius: radiusToString, shadow: shadowToString, backdrop: backdropToString, scrollBehavior: scrollBehaviorToString, placement: placementToString }
+  { size: modalSizeToString, radius: radiusToString, shadow: shadowToString, backdrop: backdropToString, scrollBehavior: scrollBehaviorToString, placement: placementToString }
   Raw.modal props kids
 
 type ModalContentProps r =
@@ -51,7 +51,7 @@ type ModalContentProps r =
 modalContent
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | ModalContentProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | ModalContentProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -63,7 +63,7 @@ type ModalHeaderProps r =
 modalHeader
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | ModalHeaderProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | ModalHeaderProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -75,7 +75,7 @@ type ModalBodyProps r =
 modalBody
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | ModalBodyProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | ModalBodyProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -87,7 +87,7 @@ type ModalFooterProps r =
 modalFooter
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | ModalFooterProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | ModalFooterProps () }
   => { | givenProps }
   -> kids
   -> JSX
