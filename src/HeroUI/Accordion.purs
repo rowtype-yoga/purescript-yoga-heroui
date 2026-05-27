@@ -3,12 +3,12 @@ module HeroUI.Accordion where
 import Prelude
 import React.Basic (JSX)
 import React.Basic.Events (EventHandler)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps, createElementImpl)
+import Yoga.React.DOM.Internal (class IsJSX, createElementImpl)
 import Data.Function.Uncurried (runFn3, runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (SelectionBehavior, SelectionMode, Variant, variantToString, selectionModeToString, selectionBehaviorToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type AccordionProps r =
@@ -39,7 +39,7 @@ type AccordionProps r =
 accordion
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | AccordionProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | AccordionProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -79,7 +79,7 @@ type AccordionItemProps r =
 accordionItem
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | AccordionItemProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | AccordionItemProps () }
   => { | givenProps }
   -> kids
   -> JSX

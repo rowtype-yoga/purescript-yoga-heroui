@@ -1,4 +1,7 @@
-workspace: {}
+workspace:
+  extraPackages:
+    react-testing-library:
+      path: ../purescript-react-testing-library
 
 package:
   name: yoga-heroui
@@ -12,6 +15,8 @@ package:
     - effect: ">=4.0.0 <5.0.0"
     - foreign: ">=7.0.0 <8.0.0"
     - functions: ">=6.0.0 <7.0.0"
+    - maybe: ">=6.0.0 <7.0.0"
+    - nullable: ">=6.0.0 <7.0.0"
     - prelude: ">=6.0.2 <7.0.0"
     - react-basic: ">=17.0.0 <18.0.0"
     - yoga-react-dom: ">=1.0.3 <2.0.0"
@@ -36,3 +41,11 @@ package:
       - js-promise-aff
       - unsafe-coerce
       - console
+      - react-testing-library
+      - spec
+      - transformers
+      - effect
+      - foreign
+      - prelude
+      - exceptions
+      - aff-promise

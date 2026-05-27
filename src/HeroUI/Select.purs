@@ -3,12 +3,12 @@ module HeroUI.Select where
 import Prelude
 import React.Basic (JSX)
 import React.Basic.Events (EventHandler)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps, createElementImpl)
+import Yoga.React.DOM.Internal (class IsJSX, createElementImpl)
 import Data.Function.Uncurried (runFn3, runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Color, LabelPlacement, Radius, SelectionMode, Size, Variant, colorToString, labelPlacementToString, radiusToString, selectionModeToString, sizeToString, variantToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type SelectProps r =
@@ -65,7 +65,7 @@ type SelectProps r =
 select
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | SelectProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | SelectProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -103,7 +103,7 @@ type SelectItemProps r =
 selectItem
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | SelectItemProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | SelectItemProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -123,7 +123,7 @@ type SelectSectionProps r =
 selectSection
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | SelectSectionProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | SelectSectionProps () }
   => { | givenProps }
   -> kids
   -> JSX

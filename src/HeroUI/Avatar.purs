@@ -1,11 +1,11 @@
 module HeroUI.Avatar where
 
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Foreign (Foreign)
 import HeroUI.Types (Color, Radius, Size, colorToString, radiusToString, sizeToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type AvatarProps r =
@@ -30,7 +30,7 @@ type AvatarProps r =
 avatar
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | AvatarProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | AvatarProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -56,7 +56,7 @@ type AvatarGroupProps r =
 avatarGroup
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | AvatarGroupProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | AvatarGroupProps () }
   => { | givenProps }
   -> kids
   -> JSX

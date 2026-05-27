@@ -2,12 +2,12 @@ module HeroUI.Popover where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps, createElementImpl)
+import Yoga.React.DOM.Internal (class IsJSX, createElementImpl)
 import Data.Function.Uncurried (runFn3, runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Backdrop, Color, Placement, Radius, ShadowSize, Size, backdropToString, colorToString, placementToString, radiusToString, shadowToString, sizeToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 data TriggerType = TriggerDialog | TriggerMenu | TriggerListbox | TriggerTree | TriggerGrid
@@ -58,7 +58,7 @@ type PopoverProps r =
 popover
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | PopoverProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | PopoverProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -72,7 +72,7 @@ type PopoverTriggerProps r =
 popoverTrigger
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | PopoverTriggerProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | PopoverTriggerProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -84,7 +84,7 @@ type PopoverContentProps r =
 popoverContent
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | PopoverContentProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | PopoverContentProps () }
   => { | givenProps }
   -> kids
   -> JSX

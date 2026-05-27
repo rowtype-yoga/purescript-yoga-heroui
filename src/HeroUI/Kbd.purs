@@ -2,10 +2,10 @@ module HeroUI.Kbd where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Foreign (Foreign)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 data KbdKey
@@ -70,7 +70,7 @@ type KbdProps r =
 kbd
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | KbdProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | KbdProps () }
   => { | givenProps }
   -> kids
   -> JSX

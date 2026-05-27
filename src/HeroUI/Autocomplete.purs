@@ -3,12 +3,12 @@ module HeroUI.Autocomplete where
 import Prelude
 import React.Basic (JSX)
 import React.Basic.Events (EventHandler)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps, createElementImpl)
+import Yoga.React.DOM.Internal (class IsJSX, createElementImpl)
 import Data.Function.Uncurried (runFn3, runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Color, LabelPlacement, Radius, Size, ValidationBehavior, Variant, colorToString, labelPlacementToString, radiusToString, sizeToString, validationBehaviorToString, variantToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 data MenuTrigger = MenuTriggerFocus | MenuTriggerInput | MenuTriggerManual
@@ -90,7 +90,7 @@ type AutocompleteProps r =
 autocomplete
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | AutocompleteProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | AutocompleteProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -128,7 +128,7 @@ type AutocompleteItemProps r =
 autocompleteItem
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | AutocompleteItemProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | AutocompleteItemProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -148,7 +148,7 @@ type AutocompleteSectionProps r =
 autocompleteSection
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | AutocompleteSectionProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | AutocompleteSectionProps () }
   => { | givenProps }
   -> kids
   -> JSX

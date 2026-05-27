@@ -1,7 +1,8 @@
 module HeroUI.Spacer where
 
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps, createElementImpl)
+import Yoga.React.DOM.Internal (class IsJSX, createElementImpl)
+import HeroUI.Internal (class CoerceHeroProps)
 import Data.Function.Uncurried (runFn3)
 import HeroUI.Raw as Raw
 
@@ -15,7 +16,7 @@ type SpacerProps r =
 spacer
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | SpacerProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | SpacerProps () }
   => { | givenProps }
   -> kids
   -> JSX

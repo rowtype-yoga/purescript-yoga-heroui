@@ -2,12 +2,12 @@ module HeroUI.Tooltip where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Color, Placement, Radius, ShadowSize, Size, colorToString, placementToString, radiusToString, shadowToString, sizeToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type TooltipProps r =
@@ -46,7 +46,7 @@ type TooltipProps r =
 tooltip
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | TooltipProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | TooltipProps () }
   => { | givenProps }
   -> kids
   -> JSX

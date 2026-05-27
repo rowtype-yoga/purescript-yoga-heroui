@@ -2,11 +2,11 @@ module HeroUI.Navbar where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps, createElementImpl)
+import Yoga.React.DOM.Internal (class IsJSX, createElementImpl)
 import Data.Function.Uncurried (runFn3, runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 data Position = Static | Sticky
@@ -67,7 +67,7 @@ type NavbarProps r =
 navbar
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | NavbarProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | NavbarProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -81,7 +81,7 @@ type NavbarBrandProps r =
 navbarBrand
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | NavbarBrandProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | NavbarBrandProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -96,7 +96,7 @@ type NavbarContentProps r =
 navbarContent
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | NavbarContentProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | NavbarContentProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -113,7 +113,7 @@ type NavbarItemProps r =
 navbarItem
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | NavbarItemProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | NavbarItemProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -132,7 +132,7 @@ type NavbarMenuToggleProps r =
 navbarMenuToggle
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | NavbarMenuToggleProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | NavbarMenuToggleProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -148,7 +148,7 @@ type NavbarMenuProps r =
 navbarMenu
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | NavbarMenuProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | NavbarMenuProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -163,7 +163,7 @@ type NavbarMenuItemProps r =
 navbarMenuItem
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | NavbarMenuItemProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | NavbarMenuItemProps () }
   => { | givenProps }
   -> kids
   -> JSX

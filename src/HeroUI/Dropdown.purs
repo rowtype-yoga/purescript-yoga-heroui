@@ -3,12 +3,12 @@ module HeroUI.Dropdown where
 import Prelude
 import React.Basic (JSX)
 import React.Basic.Events (EventHandler)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps, createElementImpl)
+import Yoga.React.DOM.Internal (class IsJSX, createElementImpl)
 import Data.Function.Uncurried (runFn3, runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Color, SelectionMode, Variant, colorToString, selectionModeToString, variantToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 data DropdownType = DropdownTypeMenu | DropdownTypeListbox
@@ -48,7 +48,7 @@ type DropdownProps r =
 dropdown
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | DropdownProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | DropdownProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -62,7 +62,7 @@ type DropdownTriggerProps r =
 dropdownTrigger
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | DropdownTriggerProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | DropdownTriggerProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -98,7 +98,7 @@ type DropdownMenuProps r =
 dropdownMenu
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | DropdownMenuProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | DropdownMenuProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -121,7 +121,7 @@ type DropdownSectionProps r =
 dropdownSection
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | DropdownSectionProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | DropdownSectionProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -166,7 +166,7 @@ type DropdownItemProps r =
 dropdownItem
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | DropdownItemProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | DropdownItemProps () }
   => { | givenProps }
   -> kids
   -> JSX

@@ -2,11 +2,11 @@ module HeroUI.Badge where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Foreign (Foreign)
 import HeroUI.Types (Color, Placement, Size, Variant, colorToString, placementToString, sizeToString, variantToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 data Shape = Circle | Rectangle
@@ -40,7 +40,7 @@ type BadgeProps r =
 badge
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | BadgeProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | BadgeProps () }
   => { | givenProps }
   -> kids
   -> JSX

@@ -2,12 +2,12 @@ module HeroUI.Radio where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Color, Orientation, Size, ValidationBehavior, colorToString, orientationToString, sizeToString, validationBehaviorToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type RadioGroupProps r =
@@ -37,7 +37,7 @@ type RadioGroupProps r =
 radioGroup
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | RadioGroupProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | RadioGroupProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -64,7 +64,7 @@ type RadioProps r =
 radio
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | RadioProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | RadioProps () }
   => { | givenProps }
   -> kids
   -> JSX

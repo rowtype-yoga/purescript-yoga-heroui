@@ -3,11 +3,11 @@ module HeroUI.Button where
 import Prelude
 import React.Basic (JSX)
 import React.Basic.Events (EventHandler)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Effect.Uncurried (EffectFn1)
 import HeroUI.Types (Color, Variant, Size, Radius, colorToString, variantToString, sizeToString, radiusToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 data SpinnerPlacement = SpinnerStart | SpinnerEnd
@@ -20,11 +20,23 @@ spinnerPlacementToString = case _ of
   SpinnerStart -> "start"
   SpinnerEnd -> "end"
 
+data ButtonType = ButtonTypeButton | ButtonTypeSubmit | ButtonTypeReset
+
+derive instance Eq ButtonType
+derive instance Ord ButtonType
+
+buttonTypeToString :: ButtonType -> String
+buttonTypeToString = case _ of
+  ButtonTypeButton -> "button"
+  ButtonTypeSubmit -> "submit"
+  ButtonTypeReset -> "reset"
+
 type ButtonProps r =
   ( color :: Color
   , variant :: Variant
   , size :: Size
   , radius :: Radius
+  , type :: ButtonType
   , startContent :: JSX
   , endContent :: JSX
   , spinner :: JSX
@@ -53,6 +65,7 @@ buttonTransforms
      , size :: Size -> String
      , radius :: Radius -> String
      , spinnerPlacement :: SpinnerPlacement -> String
+     , type :: ButtonType -> String
      }
 buttonTransforms =
   { color: colorToString
@@ -60,12 +73,13 @@ buttonTransforms =
   , size: sizeToString
   , radius: radiusToString
   , spinnerPlacement: spinnerPlacementToString
+  , type: buttonTypeToString
   }
 
 button
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | ButtonProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | ButtonProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -98,7 +112,7 @@ buttonGroupTransforms =
 buttonGroup
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | ButtonGroupProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | ButtonGroupProps () }
   => { | givenProps }
   -> kids
   -> JSX

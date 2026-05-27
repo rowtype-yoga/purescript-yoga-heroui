@@ -2,11 +2,11 @@ module HeroUI.Spinner where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Foreign (Foreign)
 import HeroUI.Types (Color, Size, colorToString, sizeToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 data SpinnerVariant = SpinDefault | SpinSimple | SpinGradient | SpinWave | SpinDots | SpinSpinner
@@ -37,7 +37,7 @@ type SpinnerProps r =
 spinner
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | SpinnerProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | SpinnerProps () }
   => { | givenProps }
   -> kids
   -> JSX

@@ -2,12 +2,12 @@ module HeroUI.Calendar where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Align, Color, alignToString, colorToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 data PageBehavior = PageSingle | PageVisible
@@ -87,7 +87,7 @@ type CalendarProps r =
 calendar
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | CalendarProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | CalendarProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -135,7 +135,7 @@ type RangeCalendarProps r =
 rangeCalendar
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | RangeCalendarProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | RangeCalendarProps () }
   => { | givenProps }
   -> kids
   -> JSX

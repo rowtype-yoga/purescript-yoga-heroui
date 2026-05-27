@@ -2,12 +2,12 @@ module HeroUI.Chip where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Color, Radius, Size, Variant, colorToString, radiusToString, sizeToString, variantToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type ChipProps r =
@@ -28,7 +28,7 @@ type ChipProps r =
 chip
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | ChipProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | ChipProps () }
   => { | givenProps }
   -> kids
   -> JSX

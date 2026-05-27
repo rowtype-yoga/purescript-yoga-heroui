@@ -2,12 +2,12 @@ module HeroUI.Table where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps, createElementImpl)
+import Yoga.React.DOM.Internal (class IsJSX, createElementImpl)
 import Data.Function.Uncurried (runFn3, runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Align, Color, Radius, SelectionBehavior, SelectionMode, ShadowSize, alignToString, colorToString, radiusToString, selectionBehaviorToString, selectionModeToString, shadowToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 data Layout = LayoutAuto | LayoutFixed
@@ -86,7 +86,7 @@ type TableProps r =
 table
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | TableProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | TableProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -103,7 +103,7 @@ type TableHeaderProps r =
 tableHeader
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | TableHeaderProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | TableHeaderProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -127,7 +127,7 @@ type TableColumnProps r =
 tableColumn
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | TableColumnProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | TableColumnProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -149,7 +149,7 @@ type TableBodyProps r =
 tableBody
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | TableBodyProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | TableBodyProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -165,7 +165,7 @@ type TableRowProps r =
 tableRow
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | TableRowProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | TableRowProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -180,7 +180,7 @@ type TableCellProps r =
 tableCell
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | TableCellProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | TableCellProps () }
   => { | givenProps }
   -> kids
   -> JSX

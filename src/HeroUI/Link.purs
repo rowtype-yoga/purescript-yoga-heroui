@@ -3,12 +3,12 @@ module HeroUI.Link where
 import Prelude
 import React.Basic (JSX)
 import React.Basic.Events (EventHandler)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Color, Size, UnderlineStyle, colorToString, sizeToString, underlineToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type LinkProps r =
@@ -42,7 +42,7 @@ type LinkProps r =
 link
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | LinkProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | LinkProps () }
   => { | givenProps }
   -> kids
   -> JSX

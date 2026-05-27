@@ -1,7 +1,8 @@
 module HeroUI.VisuallyHidden where
 
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps, createElementImpl)
+import Yoga.React.DOM.Internal (class IsJSX, createElementImpl)
+import HeroUI.Internal (class CoerceHeroProps)
 import Data.Function.Uncurried (runFn3)
 import HeroUI.Raw as Raw
 
@@ -14,7 +15,7 @@ type VisuallyHiddenProps r =
 visuallyHidden
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | VisuallyHiddenProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | VisuallyHiddenProps () }
   => { | givenProps }
   -> kids
   -> JSX

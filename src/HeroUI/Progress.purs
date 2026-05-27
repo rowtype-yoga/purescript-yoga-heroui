@@ -1,11 +1,11 @@
 module HeroUI.Progress where
 
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Foreign (Foreign)
 import HeroUI.Types (Color, Radius, Size, colorToString, radiusToString, sizeToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type ProgressProps r =
@@ -31,7 +31,7 @@ type ProgressProps r =
 progress
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | ProgressProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | ProgressProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -61,7 +61,7 @@ type CircularProgressProps r =
 circularProgress
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | CircularProgressProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | CircularProgressProps () }
   => { | givenProps }
   -> kids
   -> JSX

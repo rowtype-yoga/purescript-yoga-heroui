@@ -1,13 +1,16 @@
 module HeroUI.Toast where
 
 import Prelude
+import Data.Maybe (Maybe)
+import Data.Nullable (Nullable, toMaybe)
+import Effect (Effect)
+import Effect.Uncurried (EffectFn1, runEffectFn1)
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
-import Effect.Uncurried (EffectFn1)
-import Foreign (Foreign)
+import Foreign (Foreign, unsafeToForeign)
 import HeroUI.Types (Color, Placement, Radius, Variant, colorToString, placementToString, radiusToString, variantToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 type ToastProps r =
@@ -35,7 +38,7 @@ type ToastProps r =
 toast
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | ToastProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | ToastProps () }
   => { | givenProps }
   -> kids
   -> JSX
@@ -57,10 +60,30 @@ type ToastProviderProps r =
 toastProvider
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | ToastProviderProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | ToastProviderProps () }
   => { | givenProps }
   -> kids
   -> JSX
 toastProvider props kids = runFn4 createElementTransformImpl
   { placement: placementToString }
   Raw.toastProvider props kids
+
+foreign import addToastImpl :: EffectFn1 Foreign (Nullable String)
+foreign import closeToastImpl :: EffectFn1 String Unit
+foreign import closeAllToastsImpl :: Effect Unit
+
+-- | Imperatively enqueue a toast. Returns the toast id, or `Nothing` if the
+-- | queue rejected it (e.g. when no `ToastProvider` is mounted).
+-- | https://heroui.com/docs/components/toast#api
+addToast
+  :: forall givenProps nonDataProps
+   . CoerceHeroProps { | givenProps } { | nonDataProps } { | ToastProps () }
+  => { | givenProps }
+  -> Effect (Maybe String)
+addToast props = map toMaybe (runEffectFn1 addToastImpl (unsafeToForeign props))
+
+closeToast :: String -> Effect Unit
+closeToast = runEffectFn1 closeToastImpl
+
+closeAllToasts :: Effect Unit
+closeAllToasts = closeAllToastsImpl

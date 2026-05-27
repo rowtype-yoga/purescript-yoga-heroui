@@ -25,11 +25,11 @@ derive instance Generic Size _
 data Placement = Top | Right_ | Bottom | Left_
 derive instance Generic Placement _
 
-toSize :: Size -> T.Size
+toSize :: Size -> T.ModalSize
 toSize = case _ of
-  Small -> T.Sm
-  Medium -> T.Md
-  Large -> T.Lg
+  Small -> T.ModalSizeSm
+  Medium -> T.ModalSizeMd
+  Large -> T.ModalSizeLg
 
 toPlacement :: Placement -> T.Placement
 toPlacement = case _ of

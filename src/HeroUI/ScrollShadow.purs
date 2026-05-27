@@ -2,12 +2,12 @@ module HeroUI.ScrollShadow where
 
 import Prelude
 import React.Basic (JSX)
-import Yoga.React.DOM.Internal (class IsJSX, class CoerceReactProps)
+import Yoga.React.DOM.Internal (class IsJSX)
 import Data.Function.Uncurried (runFn4)
 import Effect.Uncurried (EffectFn1)
 import Foreign (Foreign)
 import HeroUI.Types (Orientation, orientationToString)
-import HeroUI.Internal (createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
 data ScrollShadowVisibility = VisAuto | VisTop | VisBottom | VisLeft | VisRight | VisBoth | VisNone
@@ -40,7 +40,7 @@ type ScrollShadowProps r =
 scrollShadow
   :: forall givenProps nonDataProps kids
    . IsJSX kids
-  => CoerceReactProps { | givenProps } { | nonDataProps } { | ScrollShadowProps () }
+  => CoerceHeroProps { | givenProps } { | nonDataProps } { | ScrollShadowProps () }
   => { | givenProps }
   -> kids
   -> JSX
