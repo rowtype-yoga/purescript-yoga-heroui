@@ -14,12 +14,15 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Color = Default | Primary | Secondary | Success | Warning | Danger
+
 derive instance Generic Color _
 
 data Variant = Solid | Bordered | Light | Flat | Faded
+
 derive instance Generic Variant _
 
 data Size = Small | Medium | Large
+
 derive instance Generic Size _
 
 toColor :: Color -> T.Color
@@ -47,18 +50,19 @@ toSize = case _ of
 
 mkPagination :: { color :: Color, variant :: Variant, size :: Size, showControls :: Boolean } -> JSX
 mkPagination = component "PaginationStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
-    [ pagination
-        { total: 10
-        , initialPage: 1
-        , color: toColor props.color
-        , variant: toVariant props.variant
-        , size: toSize props.size
-        , showControls: props.showControls
-        }
-        (text "")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
+        [ pagination
+            { total: 10
+            , initialPage: 1
+            , color: toColor props.color
+            , variant: toVariant props.variant
+            , size: toSize props.size
+            , showControls: props.showControls
+            }
+            (text "")
+        ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkPagination

@@ -34,4 +34,6 @@ form
   -> JSX
 form props kids = runFn4 createElementTransformImpl
   { validationBehavior: validationBehaviorToString }
-  Raw.form props kids
+  Raw.form
+  props
+  kids

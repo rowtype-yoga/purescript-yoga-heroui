@@ -96,7 +96,9 @@ autocomplete
   -> JSX
 autocomplete props kids = runFn4 createElementTransformImpl
   { variant: variantToString, color: colorToString, size: sizeToString, radius: radiusToString, menuTrigger: menuTriggerToString, labelPlacement: labelPlacementToString, validationBehavior: validationBehaviorToString }
-  Raw.autocomplete props kids
+  Raw.autocomplete
+  props
+  kids
 
 type AutocompleteItemProps r =
   ( key :: String

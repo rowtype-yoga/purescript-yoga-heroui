@@ -40,10 +40,12 @@ drawer
   -> JSX
 drawer props kids = runFn4 createElementTransformImpl
   { size: modalSizeToString, radius: radiusToString, placement: placementToString }
-  Raw.drawer props kids
+  Raw.drawer
+  props
+  kids
 
 type DrawerContentProps r =
-  ( className :: String | r )
+  (className :: String | r)
 
 drawerContent
   :: forall givenProps nonDataProps kids
@@ -55,7 +57,7 @@ drawerContent
 drawerContent = runFn3 createElementImpl Raw.drawerContent
 
 type DrawerHeaderProps r =
-  ( className :: String | r )
+  (className :: String | r)
 
 drawerHeader
   :: forall givenProps nonDataProps kids
@@ -67,7 +69,7 @@ drawerHeader
 drawerHeader = runFn3 createElementImpl Raw.drawerHeader
 
 type DrawerBodyProps r =
-  ( className :: String | r )
+  (className :: String | r)
 
 drawerBody
   :: forall givenProps nonDataProps kids
@@ -79,7 +81,7 @@ drawerBody
 drawerBody = runFn3 createElementImpl Raw.drawerBody
 
 type DrawerFooterProps r =
-  ( className :: String | r )
+  (className :: String | r)
 
 drawerFooter
   :: forall givenProps nonDataProps kids

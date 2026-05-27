@@ -14,6 +14,7 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Size = Small | Medium | Large
+
 derive instance Generic Size _
 
 toSize :: Size -> T.Size
@@ -24,10 +25,11 @@ toSize = case _ of
 
 mkSnippet :: { size :: Size } -> JSX
 mkSnippet = component "SnippetStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
-    [ snippet { size: toSize props.size, codeString: "npm install @heroui/react" } (text "npm install @heroui/react")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
+        [ snippet { size: toSize props.size, codeString: "npm install @heroui/react" } (text "npm install @heroui/react")
+        ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkSnippet

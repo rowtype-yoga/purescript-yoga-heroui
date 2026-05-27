@@ -45,4 +45,6 @@ pagination
   -> JSX
 pagination props kids = runFn4 createElementTransformImpl
   { variant: variantToString, color: colorToString, size: sizeToString, radius: radiusToString }
-  Raw.pagination props kids
+  Raw.pagination
+  props
+  kids

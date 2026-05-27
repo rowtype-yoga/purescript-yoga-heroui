@@ -14,9 +14,11 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Color = Default | Primary | Secondary | Success | Warning | Danger
+
 derive instance Generic Color _
 
 data Variant = Solid | Bordered | Flat
+
 derive instance Generic Variant _
 
 toColor :: Color -> T.Color
@@ -36,16 +38,17 @@ toVariant = case _ of
 
 mkToast :: { color :: Color, variant :: Variant } -> JSX
 mkToast = component "ToastStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
-    [ toast
-        { title: text "Notification"
-        , description: text "This is a toast message."
-        , color: toColor props.color
-        , variant: toVariant props.variant
-        }
-        (text "")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
+        [ toast
+            { title: text "Notification"
+            , description: text "This is a toast message."
+            , color: toColor props.color
+            , variant: toVariant props.variant
+            }
+            (text "")
+        ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkToast

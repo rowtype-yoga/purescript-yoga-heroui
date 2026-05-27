@@ -107,7 +107,9 @@ input
   -> JSX
 input props kids = runFn4 createElementTransformImpl
   { variant: variantToString, color: colorToString, size: sizeToString, radius: radiusToString, validationBehavior: validationBehaviorToString, labelPlacement: labelPlacementToString, type: inputTypeToString }
-  Raw.input props kids
+  Raw.input
+  props
+  kids
 
 type TextareaProps r =
   ( minRows :: Int
@@ -155,4 +157,6 @@ textarea
   -> JSX
 textarea props kids = runFn4 createElementTransformImpl
   { variant: variantToString, color: colorToString, size: sizeToString, radius: radiusToString, validationBehavior: validationBehaviorToString, labelPlacement: labelPlacementToString }
-  Raw.textarea props kids
+  Raw.textarea
+  props
+  kids

@@ -14,9 +14,11 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Radius = None | Small | Medium | Large | Full
+
 derive instance Generic Radius _
 
 data Shadow = None_ | Small_ | Medium_ | Large_
+
 derive instance Generic Shadow _
 
 toRadius :: Radius -> T.Radius
@@ -36,19 +38,20 @@ toShadow = case _ of
 
 mkImage :: { radius :: Radius, shadow :: Shadow, isZoomed :: Boolean, isBlurred :: Boolean } -> JSX
 mkImage = component "ImageStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs" }
-    [ image
-        { src: "https://heroui.com/images/hero-card-complete.jpeg"
-        , alt: "HeroUI demo image"
-        , width: 300
-        , radius: toRadius props.radius
-        , shadow: toShadow props.shadow
-        , isZoomed: props.isZoomed
-        , isBlurred: props.isBlurred
-        }
-        (text "")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs" }
+        [ image
+            { src: "https://heroui.com/images/hero-card-complete.jpeg"
+            , alt: "HeroUI demo image"
+            , width: 300
+            , radius: toRadius props.radius
+            , shadow: toShadow props.shadow
+            , isZoomed: props.isZoomed
+            , isBlurred: props.isBlurred
+            }
+            (text "")
+        ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkImage

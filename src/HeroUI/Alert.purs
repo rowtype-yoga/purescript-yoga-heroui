@@ -40,4 +40,6 @@ alert
   -> JSX
 alert props kids = runFn4 createElementTransformImpl
   { color: colorToString, variant: variantToString, radius: radiusToString }
-  Raw.alert props kids
+  Raw.alert
+  props
+  kids

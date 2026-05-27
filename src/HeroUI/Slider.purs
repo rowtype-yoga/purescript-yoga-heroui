@@ -58,4 +58,6 @@ slider
   -> JSX
 slider props kids = runFn4 createElementTransformImpl
   { size: sizeToString, color: colorToString, radius: radiusToString, orientation: orientationToString }
-  Raw.slider props kids
+  Raw.slider
+  props
+  kids

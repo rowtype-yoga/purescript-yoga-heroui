@@ -64,10 +64,12 @@ popover
   -> JSX
 popover props kids = runFn4 createElementTransformImpl
   { size: sizeToString, color: colorToString, radius: radiusToString, shadow: shadowToString, backdrop: backdropToString, placement: placementToString, triggerType: triggerTypeToString }
-  Raw.popover props kids
+  Raw.popover
+  props
+  kids
 
 type PopoverTriggerProps r =
-  ( className :: String | r )
+  (className :: String | r)
 
 popoverTrigger
   :: forall givenProps nonDataProps kids
@@ -79,7 +81,7 @@ popoverTrigger
 popoverTrigger = runFn3 createElementImpl Raw.popoverTrigger
 
 type PopoverContentProps r =
-  ( className :: String | r )
+  (className :: String | r)
 
 popoverContent
   :: forall givenProps nonDataProps kids

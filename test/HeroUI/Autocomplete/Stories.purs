@@ -14,12 +14,15 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Color = Default | Primary | Secondary | Success | Warning | Danger
+
 derive instance Generic Color _
 
 data Variant = Flat | Bordered | Underlined | Faded
+
 derive instance Generic Variant _
 
 data Size = Small | Medium | Large
+
 derive instance Generic Size _
 
 toColor :: Color -> T.Color
@@ -46,22 +49,23 @@ toSize = case _ of
 
 mkAutocomplete :: { color :: Color, variant :: Variant, size :: Size } -> JSX
 mkAutocomplete = component "AutocompleteStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs" }
-    [ autocomplete
-        { label: text "Select a fruit"
-        , placeholder: "Search..."
-        , color: toColor props.color
-        , variant: toVariant props.variant
-        , size: toSize props.size
-        }
-        [ autocompleteItem { key: "apple" } (text "Apple")
-        , autocompleteItem { key: "banana" } (text "Banana")
-        , autocompleteItem { key: "cherry" } (text "Cherry")
-        , autocompleteItem { key: "mango" } (text "Mango")
-        , autocompleteItem { key: "orange" } (text "Orange")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs" }
+        [ autocomplete
+            { label: text "Select a fruit"
+            , placeholder: "Search..."
+            , color: toColor props.color
+            , variant: toVariant props.variant
+            , size: toSize props.size
+            }
+            [ autocompleteItem { key: "apple" } (text "Apple")
+            , autocompleteItem { key: "banana" } (text "Banana")
+            , autocompleteItem { key: "cherry" } (text "Cherry")
+            , autocompleteItem { key: "mango" } (text "Mango")
+            , autocompleteItem { key: "orange" } (text "Orange")
+            ]
         ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkAutocomplete

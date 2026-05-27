@@ -14,12 +14,15 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Variant = Flat | Bordered | Underlined | Faded
+
 derive instance Generic Variant _
 
 data Size = Small | Medium | Large
+
 derive instance Generic Size _
 
 data Color = Default | Primary | Secondary | Success | Warning | Danger
+
 derive instance Generic Color _
 
 toVariant :: Variant -> T.Variant
@@ -46,16 +49,17 @@ toColor = case _ of
 
 mkDatePicker :: { variant :: Variant, size :: Size, color :: Color } -> JSX
 mkDatePicker = component "DatePickerStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs" }
-    [ datePicker
-        { label: text "Select a date"
-        , variant: toVariant props.variant
-        , size: toSize props.size
-        , color: toColor props.color
-        }
-        (text "")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs" }
+        [ datePicker
+            { label: text "Select a date"
+            , variant: toVariant props.variant
+            , size: toSize props.size
+            , color: toColor props.color
+            }
+            (text "")
+        ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkDatePicker

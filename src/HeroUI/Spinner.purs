@@ -43,4 +43,6 @@ spinner
   -> JSX
 spinner props kids = runFn4 createElementTransformImpl
   { size: sizeToString, color: colorToString, variant: spinnerVariantToString, labelColor: colorToString }
-  Raw.spinner props kids
+  Raw.spinner
+  props
+  kids

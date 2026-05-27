@@ -12,12 +12,13 @@ import YogaStories.Story (story)
 
 mkVisuallyHidden :: { label :: String } -> JSX
 mkVisuallyHidden = component "VisuallyHiddenStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex items-center gap-4" }
-    [ span {} [ text "Visible text" ]
-    , visuallyHidden {} [ text props.label ]
-    , span {} [ text "(hidden label exists for screen readers)" ]
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex items-center gap-4" }
+        [ span {} [ text "Visible text" ]
+        , visuallyHidden {} [ text props.label ]
+        , span {} [ text "(hidden label exists for screen readers)" ]
+        ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkVisuallyHidden

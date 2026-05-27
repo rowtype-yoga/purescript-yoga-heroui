@@ -46,4 +46,6 @@ scrollShadow
   -> JSX
 scrollShadow props kids = runFn4 createElementTransformImpl
   { orientation: orientationToString, visibility: scrollShadowVisibilityToString }
-  Raw.scrollShadow props kids
+  Raw.scrollShadow
+  props
+  kids

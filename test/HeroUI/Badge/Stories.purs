@@ -15,9 +15,11 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Color = Default | Primary | Secondary | Success | Warning | Danger
+
 derive instance Generic Color _
 
 data Variant = Solid | Flat | Faded
+
 derive instance Generic Variant _
 
 toColor :: Color -> T.Color
@@ -37,11 +39,12 @@ toVariant = case _ of
 
 mkBadge :: { content :: String, color :: Color, variant :: Variant } -> JSX
 mkBadge = component "BadgeStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex items-center gap-4" }
-    [ badge { content: text props.content, color: toColor props.color, variant: toVariant props.variant }
-        [ avatar { name: "User" } (text "") ]
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex items-center gap-4" }
+        [ badge { content: text props.content, color: toColor props.color, variant: toVariant props.variant }
+            [ avatar { name: "User" } (text "") ]
+        ]
     ]
-  ]
 
 basic :: JSX
 basic = story "basic" mkBadge

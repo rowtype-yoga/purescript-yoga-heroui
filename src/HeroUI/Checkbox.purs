@@ -42,7 +42,9 @@ checkbox
   -> JSX
 checkbox props kids = runFn4 createElementTransformImpl
   { size: sizeToString, color: colorToString, radius: radiusToString }
-  Raw.checkbox props kids
+  Raw.checkbox
+  props
+  kids
 
 type CheckboxGroupProps r =
   ( orientation :: Orientation
@@ -79,4 +81,6 @@ checkboxGroup
   -> JSX
 checkboxGroup props kids = runFn4 createElementTransformImpl
   { orientation: orientationToString, color: colorToString, size: sizeToString, radius: radiusToString, validationBehavior: validationBehaviorToString }
-  Raw.checkboxGroup props kids
+  Raw.checkboxGroup
+  props
+  kids

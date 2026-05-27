@@ -54,10 +54,12 @@ dropdown
   -> JSX
 dropdown props kids = runFn4 createElementTransformImpl
   { type: dropdownTypeToString, trigger: dropdownTriggerActionToString }
-  Raw.dropdown props kids
+  Raw.dropdown
+  props
+  kids
 
 type DropdownTriggerProps r =
-  ( className :: String | r )
+  (className :: String | r)
 
 dropdownTrigger
   :: forall givenProps nonDataProps kids
@@ -104,7 +106,9 @@ dropdownMenu
   -> JSX
 dropdownMenu props kids = runFn4 createElementTransformImpl
   { variant: variantToString, color: colorToString, selectionMode: selectionModeToString }
-  Raw.dropdownMenu props kids
+  Raw.dropdownMenu
+  props
+  kids
 
 type DropdownSectionProps r =
   ( title :: String

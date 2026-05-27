@@ -48,4 +48,6 @@ link
   -> JSX
 link props kids = runFn4 createElementTransformImpl
   { size: sizeToString, color: colorToString, underline: underlineToString }
-  Raw.link props kids
+  Raw.link
+  props
+  kids

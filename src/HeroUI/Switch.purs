@@ -39,4 +39,6 @@ switch_
   -> JSX
 switch_ props kids = runFn4 createElementTransformImpl
   { size: sizeToString, color: colorToString }
-  Raw.switch_ props kids
+  Raw.switch_
+  props
+  kids

@@ -76,4 +76,6 @@ kbd
   -> JSX
 kbd props kids = runFn4 createElementTransformImpl
   { keys: map kbdKeyToString :: Array KbdKey -> Array String }
-  Raw.kbd props kids
+  Raw.kbd
+  props
+  kids

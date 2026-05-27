@@ -14,9 +14,11 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Color = Default | Primary | Secondary | Success | Warning | Danger
+
 derive instance Generic Color _
 
 data Variant = Solid | Bordered | Flat | Faded
+
 derive instance Generic Variant _
 
 toColor :: Color -> T.Color
@@ -37,16 +39,17 @@ toVariant = case _ of
 
 mkAlert :: { title :: String, description :: String, color :: Color, variant :: Variant } -> JSX
 mkAlert = component "AlertStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-md" }
-    [ alert
-        { title: text props.title
-        , description: text props.description
-        , color: toColor props.color
-        , variant: toVariant props.variant
-        }
-        (text "")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-md" }
+        [ alert
+            { title: text props.title
+            , description: text props.description
+            , color: toColor props.color
+            , variant: toVariant props.variant
+            }
+            (text "")
+        ]
     ]
-  ]
 
 info :: JSX
 info = story "info" mkAlert

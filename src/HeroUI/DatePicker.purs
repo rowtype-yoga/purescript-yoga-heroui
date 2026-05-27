@@ -70,7 +70,9 @@ datePicker
   -> JSX
 datePicker props kids = runFn4 createElementTransformImpl
   { variant: variantToString, color: colorToString, size: sizeToString, radius: radiusToString, validationBehavior: validationBehaviorToString, labelPlacement: labelPlacementToString }
-  Raw.datePicker props kids
+  Raw.datePicker
+  props
+  kids
 
 type DateRangePickerProps r =
   ( label :: JSX
@@ -140,4 +142,6 @@ dateRangePicker
   -> JSX
 dateRangePicker props kids = runFn4 createElementTransformImpl
   { variant: variantToString, color: colorToString, size: sizeToString, radius: radiusToString, validationBehavior: validationBehaviorToString, labelPlacement: labelPlacementToString }
-  Raw.dateRangePicker props kids
+  Raw.dateRangePicker
+  props
+  kids

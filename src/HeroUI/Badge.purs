@@ -46,4 +46,6 @@ badge
   -> JSX
 badge props kids = runFn4 createElementTransformImpl
   { variant: variantToString, color: colorToString, size: sizeToString, shape: shapeToString, placement: placementToString }
-  Raw.badge props kids
+  Raw.badge
+  props
+  kids

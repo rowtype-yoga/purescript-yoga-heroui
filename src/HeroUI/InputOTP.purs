@@ -58,4 +58,6 @@ inputOtp
   -> JSX
 inputOtp props kids = runFn4 createElementTransformImpl
   { variant: variantToString, color: colorToString, size: sizeToString, radius: radiusToString, textAlign: textAlignToString }
-  Raw.inputOtp props kids
+  Raw.inputOtp
+  props
+  kids

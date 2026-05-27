@@ -14,12 +14,15 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Color = Default | Primary | Secondary | Success | Warning | Danger
+
 derive instance Generic Color _
 
 data Variant = Solid | Bordered | Light | Flat | Faded | Shadow | Dot
+
 derive instance Generic Variant _
 
 data Size = Small | Medium | Large
+
 derive instance Generic Size _
 
 toColor :: Color -> T.Color
@@ -49,9 +52,10 @@ toSize = case _ of
 
 mkChip :: { label :: String, color :: Color, variant :: Variant, size :: Size } -> JSX
 mkChip = component "ChipStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex items-center gap-4" }
-    [ chip { color: toColor props.color, variant: toVariant props.variant, size: toSize props.size } (text props.label) ]
-  ]
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex items-center gap-4" }
+        [ chip { color: toColor props.color, variant: toVariant props.variant, size: toSize props.size } (text props.label) ]
+    ]
 
 default :: JSX
 default = story "default" mkChip

@@ -16,6 +16,7 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data MaxWidth = Small | Medium | Large | XL | Full
+
 derive instance Generic MaxWidth _
 
 toMaxWidth :: MaxWidth -> N.MaxWidth
@@ -28,17 +29,18 @@ toMaxWidth = case _ of
 
 mkNavbar :: { maxWidth :: MaxWidth, isBordered :: Boolean } -> JSX
 mkNavbar = component "NavbarStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
-    [ navbar { maxWidth: toMaxWidth props.maxWidth, isBordered: props.isBordered }
-        [ navbarBrand {} (text "ACME")
-        , navbarContent {}
-            [ navbarItem {} [ link { color: T.Default, href: "#" } (text "Home") ]
-            , navbarItem { isActive: true } [ link { color: T.Primary, href: "#" } (text "Products") ]
-            , navbarItem {} [ link { color: T.Default, href: "#" } (text "About") ]
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
+        [ navbar { maxWidth: toMaxWidth props.maxWidth, isBordered: props.isBordered }
+            [ navbarBrand {} (text "ACME")
+            , navbarContent {}
+                [ navbarItem {} [ link { color: T.Default, href: "#" } (text "Home") ]
+                , navbarItem { isActive: true } [ link { color: T.Primary, href: "#" } (text "Products") ]
+                , navbarItem {} [ link { color: T.Default, href: "#" } (text "About") ]
+                ]
             ]
         ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkNavbar

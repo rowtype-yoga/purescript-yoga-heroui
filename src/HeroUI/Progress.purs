@@ -37,7 +37,9 @@ progress
   -> JSX
 progress props kids = runFn4 createElementTransformImpl
   { size: sizeToString, color: colorToString, radius: radiusToString }
-  Raw.progress props kids
+  Raw.progress
+  props
+  kids
 
 type CircularProgressProps r =
   ( label :: JSX
@@ -67,4 +69,6 @@ circularProgress
   -> JSX
 circularProgress props kids = runFn4 createElementTransformImpl
   { size: sizeToString, color: colorToString }
-  Raw.circularProgress props kids
+  Raw.circularProgress
+  props
+  kids

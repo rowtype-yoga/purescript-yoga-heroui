@@ -20,9 +20,11 @@ import YogaStories.Story (story)
 import Effect.Uncurried (mkEffectFn1)
 
 data Size = Small | Medium | Large
+
 derive instance Generic Size _
 
 data Placement = Top | Right_ | Bottom | Left_
+
 derive instance Generic Placement _
 
 toSize :: Size -> T.ModalSize
@@ -41,24 +43,25 @@ toPlacement = case _ of
 mkDrawer :: { size :: Size, placement :: Placement } -> JSX
 mkDrawer = component "DrawerStory" \props -> React.do
   isOpen /\ setIsOpen <- React.useState' false
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
-    [ Btn.button { onPress: handler_ (setIsOpen true) } (text "Open Drawer")
-    , drawer
-        { isOpen
-        , size: toSize props.size
-        , placement: toPlacement props.placement
-        , onOpenChange: mkEffectFn1 setIsOpen
-        }
-        [ drawerContent {}
-            [ drawerHeader {} (text "Drawer Title")
-            , drawerBody {} [ p {} (text "This is the drawer body content.") ]
-            , drawerFooter {}
-                [ Btn.button { color: T.Primary, onPress: handler_ (setIsOpen false) } (text "Close")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
+        [ Btn.button { onPress: handler_ (setIsOpen true) } (text "Open Drawer")
+        , drawer
+            { isOpen
+            , size: toSize props.size
+            , placement: toPlacement props.placement
+            , onOpenChange: mkEffectFn1 setIsOpen
+            }
+            [ drawerContent {}
+                [ drawerHeader {} (text "Drawer Title")
+                , drawerBody {} [ p {} (text "This is the drawer body content.") ]
+                , drawerFooter {}
+                    [ Btn.button { color: T.Primary, onPress: handler_ (setIsOpen false) } (text "Close")
+                    ]
                 ]
             ]
         ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkDrawer

@@ -34,4 +34,6 @@ chip
   -> JSX
 chip props kids = runFn4 createElementTransformImpl
   { variant: variantToString, color: colorToString, size: sizeToString, radius: radiusToString }
-  Raw.chip props kids
+  Raw.chip
+  props
+  kids
