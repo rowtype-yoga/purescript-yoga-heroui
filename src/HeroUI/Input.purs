@@ -10,6 +10,50 @@ import HeroUI.Types (Color, LabelPlacement, Radius, Size, ValidationBehavior, Va
 import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
 import HeroUI.Raw as Raw
 
+data InputType
+  = InputTypeText
+  | InputTypeEmail
+  | InputTypePassword
+  | InputTypeNumber
+  | InputTypeTel
+  | InputTypeUrl
+  | InputTypeSearch
+  | InputTypeDate
+  | InputTypeTime
+  | InputTypeDateTimeLocal
+  | InputTypeMonth
+  | InputTypeWeek
+  | InputTypeFile
+  | InputTypeCheckbox
+  | InputTypeRadio
+  | InputTypeHidden
+  | InputTypeColor
+  | InputTypeRange
+
+derive instance Eq InputType
+derive instance Ord InputType
+
+inputTypeToString :: InputType -> String
+inputTypeToString = case _ of
+  InputTypeText -> "text"
+  InputTypeEmail -> "email"
+  InputTypePassword -> "password"
+  InputTypeNumber -> "number"
+  InputTypeTel -> "tel"
+  InputTypeUrl -> "url"
+  InputTypeSearch -> "search"
+  InputTypeDate -> "date"
+  InputTypeTime -> "time"
+  InputTypeDateTimeLocal -> "datetime-local"
+  InputTypeMonth -> "month"
+  InputTypeWeek -> "week"
+  InputTypeFile -> "file"
+  InputTypeCheckbox -> "checkbox"
+  InputTypeRadio -> "radio"
+  InputTypeHidden -> "hidden"
+  InputTypeColor -> "color"
+  InputTypeRange -> "range"
+
 type InputProps r =
   ( variant :: Variant
   , color :: Color
@@ -36,8 +80,15 @@ type InputProps r =
   , disableAnimation :: Boolean
   , classNames :: Foreign
   , className :: String
-  , type :: String
+  , type :: InputType
   , name :: String
+  , id :: String
+  , form :: String
+  , autoComplete :: String
+  , autoFocus :: Boolean
+  , min :: String
+  , max :: String
+  , step :: String
   , minLength :: Int
   , maxLength :: Int
   , pattern :: String
@@ -55,7 +106,7 @@ input
   -> kids
   -> JSX
 input props kids = runFn4 createElementTransformImpl
-  { variant: variantToString, color: colorToString, size: sizeToString, radius: radiusToString, validationBehavior: validationBehaviorToString, labelPlacement: labelPlacementToString }
+  { variant: variantToString, color: colorToString, size: sizeToString, radius: radiusToString, validationBehavior: validationBehaviorToString, labelPlacement: labelPlacementToString, type: inputTypeToString }
   Raw.input props kids
 
 type TextareaProps r =

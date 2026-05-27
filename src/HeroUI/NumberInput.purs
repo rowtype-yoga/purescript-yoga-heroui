@@ -18,8 +18,8 @@ type NumberInputProps r =
   , name :: String
   , label :: JSX
   , description :: JSX
-  , value :: String
-  , defaultValue :: String
+  , value :: Number
+  , defaultValue :: Number
   , placeholder :: String
   , errorMessage :: JSX
   , validate :: Foreign
