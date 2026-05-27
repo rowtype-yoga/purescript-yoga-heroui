@@ -43,10 +43,12 @@ modal
   -> JSX
 modal props kids = runFn4 createElementTransformImpl
   { size: modalSizeToString, radius: radiusToString, shadow: shadowToString, backdrop: backdropToString, scrollBehavior: scrollBehaviorToString, placement: placementToString }
-  Raw.modal props kids
+  Raw.modal
+  props
+  kids
 
 type ModalContentProps r =
-  ( className :: String | r )
+  (className :: String | r)
 
 modalContent
   :: forall givenProps nonDataProps kids
@@ -58,7 +60,7 @@ modalContent
 modalContent = runFn3 createElementImpl Raw.modalContent
 
 type ModalHeaderProps r =
-  ( className :: String | r )
+  (className :: String | r)
 
 modalHeader
   :: forall givenProps nonDataProps kids
@@ -70,7 +72,7 @@ modalHeader
 modalHeader = runFn3 createElementImpl Raw.modalHeader
 
 type ModalBodyProps r =
-  ( className :: String | r )
+  (className :: String | r)
 
 modalBody
   :: forall givenProps nonDataProps kids
@@ -82,7 +84,7 @@ modalBody
 modalBody = runFn3 createElementImpl Raw.modalBody
 
 type ModalFooterProps r =
-  ( className :: String | r )
+  (className :: String | r)
 
 modalFooter
   :: forall givenProps nonDataProps kids

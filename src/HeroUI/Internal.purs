@@ -63,6 +63,7 @@ instance (WithoutPassthroughRL from to) => MaybeWithoutPassthroughRL False propN
 instance (WithoutPassthroughRL from to) => MaybeWithoutPassthroughRL True propName propVal from to
 
 class BoolOr (a :: Boolean) (b :: Boolean) (c :: Boolean) | a b -> c
+
 instance BoolOr True True True
 instance BoolOr True False True
 instance BoolOr False True True

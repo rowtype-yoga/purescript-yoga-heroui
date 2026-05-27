@@ -14,12 +14,15 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Color = Default | Primary | Secondary | Success | Warning | Danger
+
 derive instance Generic Color _
 
 data Size = Small | Medium | Large
+
 derive instance Generic Size _
 
 data Orientation = Horizontal | Vertical
+
 derive instance Generic Orientation _
 
 toColor :: Color -> T.Color
@@ -44,19 +47,20 @@ toOrientation = case _ of
 
 mkRadio :: { color :: Color, size :: Size, orientation :: Orientation } -> JSX
 mkRadio = component "RadioStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
-    [ radioGroup
-        { label: text "Select a plan"
-        , color: toColor props.color
-        , size: toSize props.size
-        , orientation: toOrientation props.orientation
-        }
-        [ radio { value: "free" } (text "Free")
-        , radio { value: "pro" } (text "Pro")
-        , radio { value: "enterprise" } (text "Enterprise")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
+        [ radioGroup
+            { label: text "Select a plan"
+            , color: toColor props.color
+            , size: toSize props.size
+            , orientation: toOrientation props.orientation
+            }
+            [ radio { value: "free" } (text "Free")
+            , radio { value: "pro" } (text "Pro")
+            , radio { value: "enterprise" } (text "Enterprise")
+            ]
         ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkRadio

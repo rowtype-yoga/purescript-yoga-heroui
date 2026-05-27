@@ -15,9 +15,11 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Placement = Top | Bottom | Left_ | Right_
+
 derive instance Generic Placement _
 
 data Color = Default | Primary | Secondary | Success | Warning | Danger
+
 derive instance Generic Color _
 
 toPlacement :: Placement -> T.Placement
@@ -38,22 +40,23 @@ toColor = case _ of
 
 mkPopover :: { placement :: Placement, color :: Color, showArrow :: Boolean } -> JSX
 mkPopover = component "PopoverStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex items-center justify-center p-16" }
-    [ popover
-        { placement: toPlacement props.placement
-        , color: toColor props.color
-        , showArrow: props.showArrow
-        }
-        [ popoverTrigger {}
-            [ Btn.button {} (text "Open Popover")
-            ]
-        , popoverContent {}
-            [ div { className: "p-4" }
-                [ p {} (text "This is the popover content") ]
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex items-center justify-center p-16" }
+        [ popover
+            { placement: toPlacement props.placement
+            , color: toColor props.color
+            , showArrow: props.showArrow
+            }
+            [ popoverTrigger {}
+                [ Btn.button {} (text "Open Popover")
+                ]
+            , popoverContent {}
+                [ div { className: "p-4" }
+                    [ p {} (text "This is the popover content") ]
+                ]
             ]
         ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkPopover

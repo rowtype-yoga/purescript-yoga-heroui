@@ -71,7 +71,9 @@ select
   -> JSX
 select props kids = runFn4 createElementTransformImpl
   { selectionMode: selectionModeToString, variant: variantToString, color: colorToString, size: sizeToString, radius: radiusToString, labelPlacement: labelPlacementToString }
-  Raw.select props kids
+  Raw.select
+  props
+  kids
 
 type SelectItemProps r =
   ( key :: String

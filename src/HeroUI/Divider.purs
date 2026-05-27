@@ -22,4 +22,6 @@ divider
   -> JSX
 divider props kids = runFn4 createElementTransformImpl
   { orientation: orientationToString }
-  Raw.divider props kids
+  Raw.divider
+  props
+  kids

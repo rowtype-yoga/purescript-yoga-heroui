@@ -41,18 +41,19 @@ toVariant = case _ of
 
 mkMenu :: { color :: Color, variant :: Variant } -> JSX
 mkMenu = component "MenuStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs border rounded-lg p-1" }
-    [ menu
-        { color: toColor props.color
-        , variant: toVariant props.variant
-        }
-        [ menuItem { key: "new" } (text "New file")
-        , menuItem { key: "copy" } (text "Copy link")
-        , menuItem { key: "edit" } (text "Edit file")
-        , menuItem { key: "delete" } (text "Delete file")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs border rounded-lg p-1" }
+        [ menu
+            { color: toColor props.color
+            , variant: toVariant props.variant
+            }
+            [ menuItem { key: "new" } (text "New file")
+            , menuItem { key: "copy" } (text "Copy link")
+            , menuItem { key: "edit" } (text "Edit file")
+            , menuItem { key: "delete" } (text "Delete file")
+            ]
         ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkMenu

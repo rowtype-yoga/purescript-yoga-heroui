@@ -14,9 +14,11 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Size = Small | Medium | Large
+
 derive instance Generic Size _
 
 data Variant = Solid | Bordered | Light
+
 derive instance Generic Variant _
 
 toSize :: Size -> T.Size
@@ -33,15 +35,16 @@ toVariant = case _ of
 
 mkBreadcrumbs :: { size :: Size, variant :: Variant } -> JSX
 mkBreadcrumbs = component "BreadcrumbsStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
-    [ breadcrumbs { size: toSize props.size, variant: toVariant props.variant }
-        [ breadcrumbItem {} (text "Home")
-        , breadcrumbItem {} (text "Products")
-        , breadcrumbItem {} (text "Electronics")
-        , breadcrumbItem { isCurrent: true } (text "Phones")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
+        [ breadcrumbs { size: toSize props.size, variant: toVariant props.variant }
+            [ breadcrumbItem {} (text "Home")
+            , breadcrumbItem {} (text "Products")
+            , breadcrumbItem {} (text "Electronics")
+            , breadcrumbItem { isCurrent: true } (text "Phones")
+            ]
         ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkBreadcrumbs

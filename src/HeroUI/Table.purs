@@ -40,8 +40,6 @@ disabledBehaviorToString = case _ of
   DisabledSelection -> "selection"
   DisabledAll -> "all"
 
-
-
 type TableProps r =
   ( color :: Color
   , layout :: Layout
@@ -92,7 +90,9 @@ table
   -> JSX
 table props kids = runFn4 createElementTransformImpl
   { color: colorToString, layout: layoutToString, radius: radiusToString, shadow: shadowToString, topContentPlacement: contentPlacementToString, bottomContentPlacement: contentPlacementToString, selectionMode: selectionModeToString, selectionBehavior: selectionBehaviorToString, disabledBehavior: disabledBehaviorToString }
-  Raw.table props kids
+  Raw.table
+  props
+  kids
 
 type TableHeaderProps r =
   ( columns :: Foreign
@@ -133,7 +133,9 @@ tableColumn
   -> JSX
 tableColumn props kids = runFn4 createElementTransformImpl
   { align: alignToString }
-  Raw.tableColumn props kids
+  Raw.tableColumn
+  props
+  kids
 
 type TableBodyProps r =
   ( items :: Foreign

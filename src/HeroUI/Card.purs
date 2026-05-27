@@ -42,7 +42,9 @@ card
   -> JSX
 card props kids = runFn4 createElementTransformImpl
   { shadow: shadowToString, radius: radiusToString }
-  Raw.card props kids
+  Raw.card
+  props
+  kids
 
 type CardHeaderProps r =
   ( className :: String

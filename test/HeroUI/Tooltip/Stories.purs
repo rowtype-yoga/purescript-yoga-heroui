@@ -15,9 +15,11 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Color = Default | Primary | Secondary | Success | Warning | Danger
+
 derive instance Generic Color _
 
 data Placement = Top | Bottom | Left_ | Right_
+
 derive instance Generic Placement _
 
 toColor :: Color -> T.Color
@@ -38,17 +40,18 @@ toPlacement = case _ of
 
 mkTooltip :: { color :: Color, placement :: Placement, showArrow :: Boolean } -> JSX
 mkTooltip = component "TooltipStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex items-center justify-center p-16" }
-    [ tooltip
-        { content: text "I am a tooltip"
-        , color: toColor props.color
-        , placement: toPlacement props.placement
-        , showArrow: props.showArrow
-        }
-        [ Btn.button { variant: T.Flat } (text "Hover me")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex items-center justify-center p-16" }
+        [ tooltip
+            { content: text "I am a tooltip"
+            , color: toColor props.color
+            , placement: toPlacement props.placement
+            , showArrow: props.showArrow
+            }
+            [ Btn.button { variant: T.Flat } (text "Hover me")
+            ]
         ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkTooltip

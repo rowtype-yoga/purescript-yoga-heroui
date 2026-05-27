@@ -15,16 +15,17 @@ import YogaStories.Story (story)
 
 mkCard :: { title :: String, body :: String, footer :: Maybe String } -> JSX
 mkCard = component "CardStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-sm" }
-    [ card {}
-        [ cardHeader {} (text props.title)
-        , cardBody {} [ p {} (text props.body) ]
-        , case props.footer of
-            Nothing -> mempty
-            Just f -> cardFooter {} [ Btn.button { color: T.Primary } (text f) ]
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-sm" }
+        [ card {}
+            [ cardHeader {} (text props.title)
+            , cardBody {} [ p {} (text props.body) ]
+            , case props.footer of
+                Nothing -> mempty
+                Just f -> cardFooter {} [ Btn.button { color: T.Primary } (text f) ]
+            ]
         ]
     ]
-  ]
 
 basic :: JSX
 basic = story "basic" mkCard

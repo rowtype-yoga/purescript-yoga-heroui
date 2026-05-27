@@ -14,12 +14,15 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Color = Default | Primary | Secondary | Success | Warning | Danger
+
 derive instance Generic Color _
 
 data Variant = Flat | Bordered | Underlined | Faded
+
 derive instance Generic Variant _
 
 data Size = Small | Medium | Large
+
 derive instance Generic Size _
 
 toColor :: Color -> T.Color
@@ -46,17 +49,18 @@ toSize = case _ of
 
 mkInput :: { label :: String, placeholder :: String, color :: Color, variant :: Variant, size :: Size } -> JSX
 mkInput = component "InputStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs" }
-    [ Inp.input
-        { label: text props.label
-        , placeholder: props.placeholder
-        , color: toColor props.color
-        , variant: toVariant props.variant
-        , size: toSize props.size
-        }
-        (text "")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs" }
+        [ Inp.input
+            { label: text props.label
+            , placeholder: props.placeholder
+            , color: toColor props.color
+            , variant: toVariant props.variant
+            , size: toSize props.size
+            }
+            (text "")
+        ]
     ]
-  ]
 
 basic :: JSX
 basic = story "basic" mkInput
@@ -69,16 +73,17 @@ basic = story "basic" mkInput
 
 mkTextarea :: { label :: String, placeholder :: String, color :: Color, variant :: Variant } -> JSX
 mkTextarea = component "TextareaStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs" }
-    [ Inp.textarea
-        { label: text props.label
-        , placeholder: props.placeholder
-        , color: toColor props.color
-        , variant: toVariant props.variant
-        }
-        (text "")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs" }
+        [ Inp.textarea
+            { label: text props.label
+            , placeholder: props.placeholder
+            , color: toColor props.color
+            , variant: toVariant props.variant
+            }
+            (text "")
+        ]
     ]
-  ]
 
 textarea_ :: JSX
 textarea_ = story "textarea" mkTextarea

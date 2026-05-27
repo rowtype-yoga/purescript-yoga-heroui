@@ -60,4 +60,6 @@ numberInput
   -> JSX
 numberInput props kids = runFn4 createElementTransformImpl
   { variant: variantToString, color: colorToString, size: sizeToString, radius: radiusToString, validationBehavior: validationBehaviorToString, labelPlacement: labelPlacementToString }
-  Raw.numberInput props kids
+  Raw.numberInput
+  props
+  kids

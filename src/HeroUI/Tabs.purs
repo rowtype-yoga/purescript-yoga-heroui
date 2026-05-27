@@ -53,7 +53,9 @@ tabs
   -> JSX
 tabs props kids = runFn4 createElementTransformImpl
   { variant: variantToString, color: colorToString, size: sizeToString, radius: radiusToString, keyboardActivation: keyboardActivationToString, placement: placementToString }
-  Raw.tabs props kids
+  Raw.tabs
+  props
+  kids
 
 type TabProps r =
   ( title :: JSX

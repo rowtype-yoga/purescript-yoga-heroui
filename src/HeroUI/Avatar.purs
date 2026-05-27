@@ -36,7 +36,9 @@ avatar
   -> JSX
 avatar props kids = runFn4 createElementTransformImpl
   { color: colorToString, radius: radiusToString, size: sizeToString }
-  Raw.avatar props kids
+  Raw.avatar
+  props
+  kids
 
 type AvatarGroupProps r =
   ( max :: Int
@@ -62,4 +64,6 @@ avatarGroup
   -> JSX
 avatarGroup props kids = runFn4 createElementTransformImpl
   { size: sizeToString, color: colorToString, radius: radiusToString }
-  Raw.avatarGroup props kids
+  Raw.avatarGroup
+  props
+  kids

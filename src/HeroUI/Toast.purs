@@ -44,7 +44,9 @@ toast
   -> JSX
 toast props kids = runFn4 createElementTransformImpl
   { color: colorToString, variant: variantToString, radius: radiusToString, severity: colorToString }
-  Raw.toast props kids
+  Raw.toast
+  props
+  kids
 
 type ToastProviderProps r =
   ( maxVisibleToasts :: Int
@@ -66,7 +68,9 @@ toastProvider
   -> JSX
 toastProvider props kids = runFn4 createElementTransformImpl
   { placement: placementToString }
-  Raw.toastProvider props kids
+  Raw.toastProvider
+  props
+  kids
 
 foreign import addToastImpl :: EffectFn1 Foreign (Nullable String)
 foreign import closeToastImpl :: EffectFn1 String Unit

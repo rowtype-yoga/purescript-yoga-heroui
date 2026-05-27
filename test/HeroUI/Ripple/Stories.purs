@@ -12,13 +12,14 @@ import YogaStories.Story (story)
 
 mkRipple :: {} -> JSX
 mkRipple = component "RippleStory" \_ -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex items-center gap-4" }
-    [ div { className: "relative overflow-hidden rounded-lg bg-default-100 p-8 cursor-pointer" }
-        [ text "Click for ripple"
-        , ripple {} (text "")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex items-center gap-4" }
+        [ div { className: "relative overflow-hidden rounded-lg bg-default-100 p-8 cursor-pointer" }
+            [ text "Click for ripple"
+            , ripple {} (text "")
+            ]
         ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkRipple {}

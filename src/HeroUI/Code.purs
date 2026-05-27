@@ -24,4 +24,6 @@ code
   -> JSX
 code props kids = runFn4 createElementTransformImpl
   { size: sizeToString, color: colorToString, radius: radiusToString }
-  Raw.code props kids
+  Raw.code
+  props
+  kids

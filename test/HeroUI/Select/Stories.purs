@@ -14,12 +14,15 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Color = Default | Primary | Secondary | Success | Warning | Danger
+
 derive instance Generic Color _
 
 data Variant = Flat | Bordered | Underlined | Faded
+
 derive instance Generic Variant _
 
 data Size = Small | Medium | Large
+
 derive instance Generic Size _
 
 toColor :: Color -> T.Color
@@ -46,22 +49,23 @@ toSize = case _ of
 
 mkSelect :: { color :: Color, variant :: Variant, size :: Size } -> JSX
 mkSelect = component "SelectStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs" }
-    [ select
-        { label: text "Favorite animal"
-        , placeholder: "Select an animal"
-        , color: toColor props.color
-        , variant: toVariant props.variant
-        , size: toSize props.size
-        }
-        [ selectItem { key: "cat" } (text "Cat")
-        , selectItem { key: "dog" } (text "Dog")
-        , selectItem { key: "elephant" } (text "Elephant")
-        , selectItem { key: "lion" } (text "Lion")
-        , selectItem { key: "tiger" } (text "Tiger")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs" }
+        [ select
+            { label: text "Favorite animal"
+            , placeholder: "Select an animal"
+            , color: toColor props.color
+            , variant: toVariant props.variant
+            , size: toSize props.size
+            }
+            [ selectItem { key: "cat" } (text "Cat")
+            , selectItem { key: "dog" } (text "Dog")
+            , selectItem { key: "elephant" } (text "Elephant")
+            , selectItem { key: "lion" } (text "Lion")
+            , selectItem { key: "tiger" } (text "Tiger")
+            ]
         ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkSelect

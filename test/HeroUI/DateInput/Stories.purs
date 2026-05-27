@@ -14,9 +14,11 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Variant = Flat | Bordered | Underlined | Faded
+
 derive instance Generic Variant _
 
 data Size = Small | Medium | Large
+
 derive instance Generic Size _
 
 toVariant :: Variant -> T.Variant
@@ -34,15 +36,16 @@ toSize = case _ of
 
 mkDateInput :: { variant :: Variant, size :: Size } -> JSX
 mkDateInput = component "DateInputStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs" }
-    [ dateInput
-        { label: text "Birth date"
-        , variant: toVariant props.variant
-        , size: toSize props.size
-        }
-        (text "")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs" }
+        [ dateInput
+            { label: text "Birth date"
+            , variant: toVariant props.variant
+            , size: toSize props.size
+            }
+            (text "")
+        ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkDateInput

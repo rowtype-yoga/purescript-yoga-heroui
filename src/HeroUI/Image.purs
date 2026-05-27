@@ -51,4 +51,6 @@ image
   -> JSX
 image props kids = runFn4 createElementTransformImpl
   { radius: radiusToString, shadow: shadowToString, loading: loadingToString }
-  Raw.image props kids
+  Raw.image
+  props
+  kids

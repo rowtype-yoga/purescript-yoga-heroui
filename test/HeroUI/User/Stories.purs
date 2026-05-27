@@ -12,10 +12,11 @@ import YogaStories.Story (story)
 
 mkUser :: { name :: String } -> JSX
 mkUser = component "UserStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
-    [ user { name: props.name, description: text "Product Designer" } (text "")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
+        [ user { name: props.name, description: text "Product Designer" } (text "")
+        ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkUser

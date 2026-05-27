@@ -49,7 +49,9 @@ listbox
   -> JSX
 listbox props kids = runFn4 createElementTransformImpl
   { variant: variantToString, color: colorToString, selectionMode: selectionModeToString, selectionBehavior: selectionBehaviorToString }
-  Raw.listbox props kids
+  Raw.listbox
+  props
+  kids
 
 type ListboxSectionProps r =
   ( title :: String

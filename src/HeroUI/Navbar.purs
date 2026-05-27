@@ -73,10 +73,12 @@ navbar
   -> JSX
 navbar props kids = runFn4 createElementTransformImpl
   { position: positionToString, maxWidth: maxWidthToString }
-  Raw.navbar props kids
+  Raw.navbar
+  props
+  kids
 
 type NavbarBrandProps r =
-  ( className :: String | r )
+  (className :: String | r)
 
 navbarBrand
   :: forall givenProps nonDataProps kids
@@ -102,7 +104,9 @@ navbarContent
   -> JSX
 navbarContent props kids = runFn4 createElementTransformImpl
   { justify: navbarJustifyToString }
-  Raw.navbarContent props kids
+  Raw.navbarContent
+  props
+  kids
 
 type NavbarItemProps r =
   ( isActive :: Boolean

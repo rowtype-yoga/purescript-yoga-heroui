@@ -74,7 +74,8 @@
     },
     "extra_packages": {
       "react-testing-library": {
-        "path": "../purescript-react-testing-library"
+        "git": "https://github.com/i-am-the-slime/purescript-react-testing-library.git",
+        "ref": "fd679db77337485058907ba5c6cbac3b478de342"
       }
     }
   },
@@ -1018,8 +1019,9 @@
       ]
     },
     "react-testing-library": {
-      "type": "local",
-      "path": "../purescript-react-testing-library",
+      "type": "git",
+      "url": "https://github.com/i-am-the-slime/purescript-react-testing-library.git",
+      "rev": "fd679db77337485058907ba5c6cbac3b478de342",
       "dependencies": [
         "aff",
         "aff-promise",

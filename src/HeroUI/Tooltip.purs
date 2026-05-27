@@ -52,4 +52,6 @@ tooltip
   -> JSX
 tooltip props kids = runFn4 createElementTransformImpl
   { size: sizeToString, color: colorToString, radius: radiusToString, shadow: shadowToString, placement: placementToString }
-  Raw.tooltip props kids
+  Raw.tooltip
+  props
+  kids

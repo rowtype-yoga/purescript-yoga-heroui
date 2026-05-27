@@ -40,7 +40,9 @@ breadcrumbs
   -> JSX
 breadcrumbs props kids = runFn4 createElementTransformImpl
   { variant: variantToString, color: colorToString, size: sizeToString, radius: radiusToString, underline: underlineToString }
-  Raw.breadcrumbs props kids
+  Raw.breadcrumbs
+  props
+  kids
 
 type BreadcrumbItemProps r =
   ( color :: Color
@@ -75,4 +77,6 @@ breadcrumbItem
   -> JSX
 breadcrumbItem props kids = runFn4 createElementTransformImpl
   { color: colorToString, size: sizeToString, underline: underlineToString }
-  Raw.breadcrumbItem props kids
+  Raw.breadcrumbItem
+  props
+  kids

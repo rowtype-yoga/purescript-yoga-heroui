@@ -43,7 +43,9 @@ radioGroup
   -> JSX
 radioGroup props kids = runFn4 createElementTransformImpl
   { size: sizeToString, color: colorToString, orientation: orientationToString, validationBehavior: validationBehaviorToString }
-  Raw.radioGroup props kids
+  Raw.radioGroup
+  props
+  kids
 
 type RadioProps r =
   ( label :: JSX
@@ -70,4 +72,6 @@ radio
   -> JSX
 radio props kids = runFn4 createElementTransformImpl
   { size: sizeToString, color: colorToString }
-  Raw.radio props kids
+  Raw.radio
+  props
+  kids

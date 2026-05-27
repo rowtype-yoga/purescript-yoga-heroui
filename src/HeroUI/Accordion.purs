@@ -45,7 +45,9 @@ accordion
   -> JSX
 accordion props kids = runFn4 createElementTransformImpl
   { variant: variantToString, selectionMode: selectionModeToString, selectionBehavior: selectionBehaviorToString }
-  Raw.accordion props kids
+  Raw.accordion
+  props
+  kids
 
 type AccordionItemProps r =
   ( title :: JSX

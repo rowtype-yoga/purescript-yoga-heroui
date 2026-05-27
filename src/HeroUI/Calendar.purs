@@ -93,7 +93,9 @@ calendar
   -> JSX
 calendar props kids = runFn4 createElementTransformImpl
   { color: colorToString, firstDayOfWeek: firstDayOfWeekToString, selectionAlignment: alignToString, pageBehavior: pageBehaviorToString, weekdayStyle: weekdayStyleToString }
-  Raw.calendar props kids
+  Raw.calendar
+  props
+  kids
 
 type RangeCalendarProps r =
   ( value :: Foreign
@@ -141,4 +143,6 @@ rangeCalendar
   -> JSX
 rangeCalendar props kids = runFn4 createElementTransformImpl
   { color: colorToString, firstDayOfWeek: firstDayOfWeekToString, selectionAlignment: alignToString, pageBehavior: pageBehaviorToString, weekdayStyle: weekdayStyleToString }
-  Raw.rangeCalendar props kids
+  Raw.rangeCalendar
+  props
+  kids

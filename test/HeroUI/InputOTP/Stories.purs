@@ -14,12 +14,15 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Color = Default | Primary | Secondary | Success | Warning | Danger
+
 derive instance Generic Color _
 
 data Variant = Flat | Bordered | Underlined | Faded
+
 derive instance Generic Variant _
 
 data Size = Small | Medium | Large
+
 derive instance Generic Size _
 
 toColor :: Color -> T.Color
@@ -46,16 +49,17 @@ toSize = case _ of
 
 mkInputOTP :: { length :: Int, color :: Color, variant :: Variant, size :: Size } -> JSX
 mkInputOTP = component "InputOTPStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
-    [ inputOtp
-        { length: props.length
-        , color: toColor props.color
-        , variant: toVariant props.variant
-        , size: toSize props.size
-        }
-        (text "")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
+        [ inputOtp
+            { length: props.length
+            , color: toColor props.color
+            , variant: toVariant props.variant
+            , size: toSize props.size
+            }
+            (text "")
+        ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkInputOTP

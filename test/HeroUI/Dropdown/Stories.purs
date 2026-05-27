@@ -15,9 +15,11 @@ import YogaStories.Controls (enum)
 import YogaStories.Story (story)
 
 data Color = Default | Primary | Secondary | Success | Warning | Danger
+
 derive instance Generic Color _
 
 data Variant = Solid | Bordered | Light | Flat | Faded | Shadow
+
 derive instance Generic Variant _
 
 toColor :: Color -> T.Color
@@ -40,20 +42,21 @@ toVariant = case _ of
 
 mkDropdown :: { color :: Color, variant :: Variant } -> JSX
 mkDropdown = component "DropdownStory" \props -> React.do
-  pure $ provider {} [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
-    [ dropdown {}
-        [ dropdownTrigger {}
-            [ Btn.button { variant: toVariant props.variant, color: toColor props.color } (text "Open Menu")
-            ]
-        , dropdownMenu {}
-            [ dropdownItem { key: "new" } (text "New file")
-            , dropdownItem { key: "copy" } (text "Copy link")
-            , dropdownItem { key: "edit" } (text "Edit file")
-            , dropdownItem { key: "delete" } (text "Delete file")
+  pure $ provider {}
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
+        [ dropdown {}
+            [ dropdownTrigger {}
+                [ Btn.button { variant: toVariant props.variant, color: toColor props.color } (text "Open Menu")
+                ]
+            , dropdownMenu {}
+                [ dropdownItem { key: "new" } (text "New file")
+                , dropdownItem { key: "copy" } (text "Copy link")
+                , dropdownItem { key: "edit" } (text "Edit file")
+                , dropdownItem { key: "delete" } (text "Delete file")
+                ]
             ]
         ]
     ]
-  ]
 
 default :: JSX
 default = story "default" mkDropdown

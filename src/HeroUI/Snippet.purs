@@ -40,4 +40,6 @@ snippet
   -> JSX
 snippet props kids = runFn4 createElementTransformImpl
   { size: sizeToString, radius: radiusToString }
-  Raw.snippet props kids
+  Raw.snippet
+  props
+  kids

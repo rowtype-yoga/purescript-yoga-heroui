@@ -67,7 +67,9 @@ dateInput
   -> JSX
 dateInput props kids = runFn4 createElementTransformImpl
   { variant: variantToString, color: colorToString, size: sizeToString, radius: radiusToString, validationBehavior: validationBehaviorToString, labelPlacement: labelPlacementToString }
-  Raw.dateInput props kids
+  Raw.dateInput
+  props
+  kids
 
 type TimeInputProps r =
   ( label :: JSX
@@ -116,4 +118,6 @@ timeInput
   -> JSX
 timeInput props kids = runFn4 createElementTransformImpl
   { variant: variantToString, color: colorToString, size: sizeToString, radius: radiusToString, granularity: granularityToString, labelPlacement: labelPlacementToString, validationBehavior: validationBehaviorToString }
-  Raw.timeInput props kids
+  Raw.timeInput
+  props
+  kids
