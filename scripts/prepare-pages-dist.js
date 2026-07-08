@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 const distDir = "dist";
 const userDir = join(distDir, "user");
+const cacheKey = process.env.GITHUB_SHA || String(Date.now());
 
 mkdirSync(userDir, { recursive: true });
 await buildHeroStyles();
@@ -34,10 +35,12 @@ async function buildHeroStyles() {
 }
 
 function patchIndexHtml(text) {
-  return text.replace(
-    /<script type="module" src="(?:\.\/|\/)user\/yoga-stories-head\.js"><\/script>/g,
-    '<link rel="stylesheet" href="./user/heroui-styles.css">'
-  );
+  return text
+    .replace(
+      /<script type="module" src="(?:\.\/|\/)user\/yoga-stories-head\.js"><\/script>/g,
+      '<link rel="stylesheet" href="./user/heroui-styles.css">'
+    )
+    .replace(/(src|href)="(\.\/(?:assets|user)\/[^"?]+)"/g, `$1="$2?v=${cacheKey}"`);
 }
 
 function isYogaStoriesBrowserFile(path) {
@@ -48,6 +51,7 @@ function isYogaStoriesBrowserFile(path) {
 
 function patchJavaScript(text) {
   return text
+    .replace(/(["'])\.\/(index-[A-Za-z0-9_-]+\.js)\1/g, `$1./$2?v=${cacheKey}$1`)
     .replaceAll("\"/stories.json\"", "new URL(\"./stories.json\", document.baseURI).href")
     .replaceAll("'/stories.json'", "new URL(\"./stories.json\", document.baseURI).href")
     .replaceAll("\"/output/YogaStories.UI.Client/index.js\"", "new URL(\"./output/YogaStories.UI.Client/index.js\", document.baseURI).href")
