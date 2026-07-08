@@ -4,7 +4,7 @@ import Prelude hiding (div)
 
 import Data.Generic.Rep (class Generic)
 import React.Basic (JSX)
-import HeroUI.Menu (menu, menuItem)
+import HeroUI.Menu (menu, menuItem, menuSection)
 import HeroUI.Provider (provider)
 import HeroUI.Types as T
 import Yoga.React (component)
@@ -42,15 +42,19 @@ toVariant = case _ of
 mkMenu :: { color :: Color, variant :: Variant } -> JSX
 mkMenu = component "MenuStory" \props -> React.do
   pure $ provider {}
-    [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs border rounded-lg p-1" }
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs border p-1" }
         [ menu
             { color: toColor props.color
             , variant: toVariant props.variant
             }
-            [ menuItem { key: "new" } (text "New file")
-            , menuItem { key: "copy" } (text "Copy link")
-            , menuItem { key: "edit" } (text "Edit file")
-            , menuItem { key: "delete" } (text "Delete file")
+            [ menuSection { title: "Actions", showDivider: true }
+                [ menuItem { key: "new" } (text "New file")
+                , menuItem { key: "copy" } (text "Copy link")
+                ]
+            , menuSection { title: "Edit" }
+                [ menuItem { key: "edit" } (text "Edit file")
+                , menuItem { key: "delete" } (text "Delete file")
+                ]
             ]
         ]
     ]

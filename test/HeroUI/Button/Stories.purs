@@ -53,7 +53,7 @@ toSize = case _ of
 mkButton :: { label :: String, color :: Color, variant :: Variant, size :: Size, isDisabled :: Boolean } -> JSX
 mkButton = component "ButtonStory" \props -> React.do
   pure $ provider {}
-    [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex items-center gap-4" }
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex flex-col items-start gap-4" }
         [ Btn.button
             { color: toColor props.color
             , variant: toVariant props.variant
@@ -61,6 +61,16 @@ mkButton = component "ButtonStory" \props -> React.do
             , isDisabled: props.isDisabled
             }
             (text props.label)
+        , Btn.buttonGroup
+            { color: toColor props.color
+            , variant: toVariant props.variant
+            , size: toSize props.size
+            , isDisabled: props.isDisabled
+            }
+            [ Btn.button {} (text "One")
+            , Btn.button {} (text "Two")
+            , Btn.button {} (text "Three")
+            ]
         ]
     ]
 

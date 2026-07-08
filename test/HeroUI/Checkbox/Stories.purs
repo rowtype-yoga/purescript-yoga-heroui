@@ -4,7 +4,7 @@ import Prelude hiding (div)
 
 import Data.Generic.Rep (class Generic)
 import React.Basic (JSX)
-import HeroUI.Checkbox (checkbox)
+import HeroUI.Checkbox (checkbox, checkboxGroup)
 import HeroUI.Provider (provider)
 import HeroUI.Types as T
 import Yoga.React (component)
@@ -39,8 +39,24 @@ toSize = case _ of
 mkCheckbox :: { color :: Color, size :: Size, defaultSelected :: Boolean } -> JSX
 mkCheckbox = component "CheckboxStory" \props -> React.do
   pure $ provider {}
-    [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex items-center gap-4" }
-        [ checkbox { color: toColor props.color, size: toSize props.size, defaultSelected: props.defaultSelected } (text "I agree to the terms") ]
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex flex-col items-start gap-4" }
+        [ checkbox
+            { color: toColor props.color
+            , size: toSize props.size
+            , defaultSelected: props.defaultSelected
+            }
+            (text "I agree to the terms")
+        , checkboxGroup
+            { color: toColor props.color
+            , size: toSize props.size
+            , label: "Notification channels"
+            , orientation: T.Vertical
+            }
+            [ checkbox { value: "email" } (text "Email")
+            , checkbox { value: "sms" } (text "SMS")
+            , checkbox { value: "push" } (text "Push")
+            ]
+        ]
     ]
 
 default :: JSX

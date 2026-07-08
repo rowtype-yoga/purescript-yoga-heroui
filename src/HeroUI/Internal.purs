@@ -1,6 +1,7 @@
 module HeroUI.Internal where
 
-import Data.Function.Uncurried (Fn4)
+import Data.Function.Uncurried (Fn2, Fn4)
+import Foreign (Foreign)
 import Prim.Boolean (False, True)
 import Prim.Row (class Union)
 import Prim.RowList (class RowToList, RowList)
@@ -9,6 +10,10 @@ import Type.RowList (class ListToRow)
 import Type.RowList as RL
 import Unsafe.Coerce (unsafeCoerce)
 import Yoga.React.DOM.Internal (class DoesStartWith)
+
+foreign import transformPropsImpl
+  :: forall transforms props
+   . Fn2 transforms props Foreign
 
 foreign import createElementTransformImpl
   :: forall transforms component props children

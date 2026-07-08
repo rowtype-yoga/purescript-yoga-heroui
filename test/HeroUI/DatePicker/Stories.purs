@@ -4,7 +4,7 @@ import Prelude hiding (div)
 
 import Data.Generic.Rep (class Generic)
 import React.Basic (JSX)
-import HeroUI.DatePicker (datePicker)
+import HeroUI.DatePicker (datePicker, dateRangePicker)
 import HeroUI.Provider (provider)
 import HeroUI.Types as T
 import Yoga.React (component)
@@ -50,9 +50,16 @@ toColor = case _ of
 mkDatePicker :: { variant :: Variant, size :: Size, color :: Color } -> JSX
 mkDatePicker = component "DatePickerStory" \props -> React.do
   pure $ provider {}
-    [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs" }
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg grid gap-4 max-w-xs" }
         [ datePicker
             { label: text "Select a date"
+            , variant: toVariant props.variant
+            , size: toSize props.size
+            , color: toColor props.color
+            }
+            (text "")
+        , dateRangePicker
+            { label: text "Select a range"
             , variant: toVariant props.variant
             , size: toSize props.size
             , color: toColor props.color

@@ -7,10 +7,10 @@ import Effect (Effect)
 import Effect.Uncurried (EffectFn1, runEffectFn1)
 import React.Basic (JSX)
 import Yoga.React.DOM.Internal (class IsJSX)
-import Data.Function.Uncurried (runFn4)
-import Foreign (Foreign, unsafeToForeign)
+import Data.Function.Uncurried (runFn2, runFn4)
+import Foreign (Foreign)
 import HeroUI.Types (Color, Placement, Radius, Variant, colorToString, placementToString, radiusToString, variantToString)
-import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl)
+import HeroUI.Internal (class CoerceHeroProps, createElementTransformImpl, transformPropsImpl)
 import HeroUI.Raw as Raw
 
 type ToastProps r =
@@ -42,11 +42,9 @@ toast
   => { | givenProps }
   -> kids
   -> JSX
-toast props kids = runFn4 createElementTransformImpl
-  { color: colorToString, variant: variantToString, radius: radiusToString, severity: colorToString }
-  Raw.toast
-  props
-  kids
+toast props kids = runFn4 createElementTransformImpl transforms Raw.toast props kids
+  where
+  transforms = { color: colorToString, variant: variantToString, radius: radiusToString, severity: colorToString }
 
 type ToastProviderProps r =
   ( maxVisibleToasts :: Int
@@ -73,8 +71,6 @@ toastProvider props kids = runFn4 createElementTransformImpl
   kids
 
 foreign import addToastImpl :: EffectFn1 Foreign (Nullable String)
-foreign import closeToastImpl :: EffectFn1 String Unit
-foreign import closeAllToastsImpl :: Effect Unit
 
 -- | Imperatively enqueue a toast. Returns the toast id, or `Nothing` if the
 -- | queue rejected it (e.g. when no `ToastProvider` is mounted).
@@ -84,10 +80,16 @@ addToast
    . CoerceHeroProps { | givenProps } { | nonDataProps } { | ToastProps () }
   => { | givenProps }
   -> Effect (Maybe String)
-addToast props = map toMaybe (runEffectFn1 addToastImpl (unsafeToForeign props))
+addToast props = map toMaybe (runEffectFn1 addToastImpl (runFn2 transformPropsImpl transforms props))
+  where
+  transforms = { color: colorToString, variant: variantToString, radius: radiusToString, severity: colorToString }
+
+foreign import closeToastImpl :: EffectFn1 String Unit
 
 closeToast :: String -> Effect Unit
 closeToast = runEffectFn1 closeToastImpl
+
+foreign import closeAllToastsImpl :: Effect Unit
 
 closeAllToasts :: Effect Unit
 closeAllToasts = closeAllToastsImpl

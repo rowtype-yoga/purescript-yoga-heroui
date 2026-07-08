@@ -4,7 +4,7 @@ import Prelude hiding (div)
 
 import Data.Generic.Rep (class Generic)
 import React.Basic (JSX)
-import HeroUI.Select (select, selectItem)
+import HeroUI.Select (select, selectItem, selectSection)
 import HeroUI.Provider (provider)
 import HeroUI.Types as T
 import Yoga.React (component)
@@ -58,11 +58,15 @@ mkSelect = component "SelectStory" \props -> React.do
             , variant: toVariant props.variant
             , size: toSize props.size
             }
-            [ selectItem { key: "cat" } (text "Cat")
-            , selectItem { key: "dog" } (text "Dog")
-            , selectItem { key: "elephant" } (text "Elephant")
-            , selectItem { key: "lion" } (text "Lion")
-            , selectItem { key: "tiger" } (text "Tiger")
+            [ selectSection { title: "Pets", showDivider: true }
+                [ selectItem { key: "cat" } (text "Cat")
+                , selectItem { key: "dog" } (text "Dog")
+                ]
+            , selectSection { title: "Wild" }
+                [ selectItem { key: "elephant" } (text "Elephant")
+                , selectItem { key: "lion" } (text "Lion")
+                , selectItem { key: "tiger" } (text "Tiger")
+                ]
             ]
         ]
     ]

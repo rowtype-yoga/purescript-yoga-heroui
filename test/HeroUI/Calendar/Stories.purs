@@ -4,7 +4,7 @@ import Prelude hiding (div)
 
 import Data.Generic.Rep (class Generic)
 import React.Basic (JSX)
-import HeroUI.Calendar (calendar)
+import HeroUI.Calendar (FirstDayOfWeek(..), calendar, rangeCalendar)
 import HeroUI.Provider (provider)
 import HeroUI.Types as T
 import Yoga.React (component)
@@ -29,8 +29,19 @@ toColor = case _ of
 mkCalendar :: { color :: Color } -> JSX
 mkCalendar = component "CalendarStory" \props -> React.do
   pure $ provider {}
-    [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
-        [ calendar { color: toColor props.color } (text "")
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex flex-wrap gap-6" }
+        [ calendar
+            { color: toColor props.color
+            , firstDayOfWeek: Mon
+            , visibleMonths: 1
+            }
+            (text "")
+        , rangeCalendar
+            { color: toColor props.color
+            , firstDayOfWeek: Mon
+            , visibleMonths: 2
+            }
+            (text "")
         ]
     ]
 

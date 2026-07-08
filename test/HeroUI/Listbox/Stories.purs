@@ -4,7 +4,7 @@ import Prelude hiding (div)
 
 import Data.Generic.Rep (class Generic)
 import React.Basic (JSX)
-import HeroUI.Listbox (listbox, listboxItem)
+import HeroUI.Listbox (listbox, listboxItem, listboxSection)
 import HeroUI.Provider (provider)
 import HeroUI.Types as T
 import Yoga.React (component)
@@ -42,16 +42,20 @@ toVariant = case _ of
 mkListbox :: { color :: Color, variant :: Variant } -> JSX
 mkListbox = component "ListboxStory" \props -> React.do
   pure $ provider {}
-    [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs border rounded-lg p-1" }
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs border p-1" }
         [ listbox
             { color: toColor props.color
             , variant: toVariant props.variant
             , selectionMode: T.Single
             }
-            [ listboxItem { key: "new" } (text "New file")
-            , listboxItem { key: "copy" } (text "Copy link")
-            , listboxItem { key: "edit" } (text "Edit file")
-            , listboxItem { key: "delete" } (text "Delete file")
+            [ listboxSection { title: "Actions", showDivider: true }
+                [ listboxItem { key: "new" } (text "New file")
+                , listboxItem { key: "copy" } (text "Copy link")
+                ]
+            , listboxSection { title: "Edit" }
+                [ listboxItem { key: "edit" } (text "Edit file")
+                , listboxItem { key: "delete" } (text "Delete file")
+                ]
             ]
         ]
     ]

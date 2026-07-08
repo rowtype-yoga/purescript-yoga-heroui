@@ -4,7 +4,6 @@ import Prelude hiding (div)
 
 import Data.Generic.Rep (class Generic)
 import React.Basic (JSX)
-import HeroUI.Navbar (navbar, navbarBrand, navbarContent, navbarItem)
 import HeroUI.Provider (provider)
 import HeroUI.Link (link)
 import HeroUI.Navbar as N
@@ -31,12 +30,24 @@ mkNavbar :: { maxWidth :: MaxWidth, isBordered :: Boolean } -> JSX
 mkNavbar = component "NavbarStory" \props -> React.do
   pure $ provider {}
     [ div { className: "dark bg-background text-foreground p-6 rounded-lg" }
-        [ navbar { maxWidth: toMaxWidth props.maxWidth, isBordered: props.isBordered }
-            [ navbarBrand {} (text "ACME")
-            , navbarContent {}
-                [ navbarItem {} [ link { color: T.Default, href: "#" } (text "Home") ]
-                , navbarItem { isActive: true } [ link { color: T.Primary, href: "#" } (text "Products") ]
-                , navbarItem {} [ link { color: T.Default, href: "#" } (text "About") ]
+        [ N.navbar
+            { maxWidth: toMaxWidth props.maxWidth
+            , isBordered: props.isBordered
+            , isMenuDefaultOpen: true
+            }
+            [ N.navbarContent { justify: N.JustifyStart }
+                [ N.navbarMenuToggle { srOnlyText: "Open navigation" } (text "")
+                , N.navbarBrand {} (text "ACME")
+                ]
+            , N.navbarContent { justify: N.JustifyCenter }
+                [ N.navbarItem {} [ link { color: T.Default, href: "#" } (text "Home") ]
+                , N.navbarItem { isActive: true } [ link { color: T.Primary, href: "#" } (text "Products") ]
+                , N.navbarItem {} [ link { color: T.Default, href: "#" } (text "About") ]
+                ]
+            , N.navbarMenu {}
+                [ N.navbarMenuItem {} [ link { color: T.Default, href: "#" } (text "Profile") ]
+                , N.navbarMenuItem { isActive: true } [ link { color: T.Primary, href: "#" } (text "Dashboard") ]
+                , N.navbarMenuItem {} [ link { color: T.Default, href: "#" } (text "Settings") ]
                 ]
             ]
         ]

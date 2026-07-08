@@ -4,7 +4,7 @@ import Prelude hiding (div)
 
 import Data.Generic.Rep (class Generic)
 import React.Basic (JSX)
-import HeroUI.Dropdown (dropdown, dropdownTrigger, dropdownMenu, dropdownItem)
+import HeroUI.Dropdown (dropdown, dropdownItem, dropdownMenu, dropdownSection, dropdownTrigger)
 import HeroUI.Provider (provider)
 import HeroUI.Button as Btn
 import HeroUI.Types as T
@@ -49,10 +49,13 @@ mkDropdown = component "DropdownStory" \props -> React.do
                 [ Btn.button { variant: toVariant props.variant, color: toColor props.color } (text "Open Menu")
                 ]
             , dropdownMenu {}
-                [ dropdownItem { key: "new" } (text "New file")
-                , dropdownItem { key: "copy" } (text "Copy link")
-                , dropdownItem { key: "edit" } (text "Edit file")
-                , dropdownItem { key: "delete" } (text "Delete file")
+                [ dropdownSection { title: "Files", showDivider: true }
+                    [ dropdownItem { key: "new" } (text "New file")
+                    , dropdownItem { key: "copy" } (text "Copy link")
+                    ]
+                , dropdownSection { title: "Danger" }
+                    [ dropdownItem { key: "delete" } (text "Delete file")
+                    ]
                 ]
             ]
         ]

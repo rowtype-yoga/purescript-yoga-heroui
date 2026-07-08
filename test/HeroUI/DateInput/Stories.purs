@@ -4,7 +4,7 @@ import Prelude hiding (div)
 
 import Data.Generic.Rep (class Generic)
 import React.Basic (JSX)
-import HeroUI.DateInput (dateInput)
+import HeroUI.DateInput (dateInput, timeInput)
 import HeroUI.Provider (provider)
 import HeroUI.Types as T
 import Yoga.React (component)
@@ -37,9 +37,15 @@ toSize = case _ of
 mkDateInput :: { variant :: Variant, size :: Size } -> JSX
 mkDateInput = component "DateInputStory" \props -> React.do
   pure $ provider {}
-    [ div { className: "dark bg-background text-foreground p-6 rounded-lg max-w-xs" }
+    [ div { className: "dark bg-background text-foreground p-6 rounded-lg grid gap-4 max-w-xs" }
         [ dateInput
             { label: text "Birth date"
+            , variant: toVariant props.variant
+            , size: toSize props.size
+            }
+            (text "")
+        , timeInput
+            { label: text "Start time"
             , variant: toVariant props.variant
             , size: toSize props.size
             }

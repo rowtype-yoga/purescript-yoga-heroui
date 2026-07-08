@@ -4,7 +4,7 @@ import Prelude hiding (div)
 
 import Data.Generic.Rep (class Generic)
 import React.Basic (JSX)
-import HeroUI.Autocomplete (autocomplete, autocompleteItem)
+import HeroUI.Autocomplete (autocomplete, autocompleteItem, autocompleteSection)
 import HeroUI.Provider (provider)
 import HeroUI.Types as T
 import Yoga.React (component)
@@ -58,11 +58,14 @@ mkAutocomplete = component "AutocompleteStory" \props -> React.do
             , variant: toVariant props.variant
             , size: toSize props.size
             }
-            [ autocompleteItem { key: "apple" } (text "Apple")
-            , autocompleteItem { key: "banana" } (text "Banana")
-            , autocompleteItem { key: "cherry" } (text "Cherry")
-            , autocompleteItem { key: "mango" } (text "Mango")
-            , autocompleteItem { key: "orange" } (text "Orange")
+            [ autocompleteSection { title: "Common" }
+                [ autocompleteItem { key: "apple" } (text "Apple")
+                , autocompleteItem { key: "banana" } (text "Banana")
+                ]
+            , autocompleteSection { title: "Tropical" }
+                [ autocompleteItem { key: "mango" } (text "Mango")
+                , autocompleteItem { key: "orange" } (text "Orange")
+                ]
             ]
         ]
     ]
