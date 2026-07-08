@@ -9,6 +9,7 @@ const distDir = "dist";
 const depsDir = join(distDir, "deps");
 const userDir = join(distDir, "user");
 const cacheKey = process.env.GITHUB_SHA || String(Date.now());
+const productionDefines = { "process.env.NODE_ENV": JSON.stringify("production") };
 
 mkdirSync(userDir, { recursive: true });
 mkdirSync(depsDir, { recursive: true });
@@ -61,6 +62,7 @@ async function buildDependencyBundles() {
 
   await build({
     configFile: false,
+    define: productionDefines,
     build: {
       outDir: depsDir,
       emptyOutDir: false,
@@ -78,6 +80,7 @@ async function buildDependencyBundles() {
 
   await build({
     configFile: false,
+    define: productionDefines,
     build: {
       outDir: depsDir,
       emptyOutDir: false,
@@ -310,9 +313,14 @@ function visitBrowserModule(path, parent, seen, failures) {
     return;
   }
 
+  const source = readFileSync(normalized, "utf8");
+  if (source.includes("process.env")) {
+    failures.push(`process.env reference in ${normalized}`);
+  }
+
   let specifiers;
   try {
-    specifiers = importSpecifiers(normalized);
+    specifiers = importSpecifiers(normalized, source);
   } catch (error) {
     failures.push(`parse ${normalized}: ${error.message}`);
     return;
@@ -332,8 +340,8 @@ function visitBrowserModule(path, parent, seen, failures) {
   }
 }
 
-function importSpecifiers(path) {
-  const ast = parseAst(readFileSync(path, "utf8"));
+function importSpecifiers(path, source = readFileSync(path, "utf8")) {
+  const ast = parseAst(source);
   const specifiers = [];
   visitAst(ast, node => {
     if (isImportNode(node) && node.source?.type === "Literal" && typeof node.source.value === "string") {

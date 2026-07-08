@@ -5,6 +5,7 @@ import Prelude hiding (div)
 import Data.Generic.Rep (class Generic)
 import Data.Maybe (Maybe(..))
 import Data.Tuple.Nested ((/\))
+import Foreign (Foreign)
 import React.Basic (JSX)
 import React.Basic.Events (handler_)
 import React.Basic.Hooks as React
@@ -17,6 +18,15 @@ import Yoga.React.DOM.HTML (div)
 import Yoga.React.DOM.Internal (text)
 import YogaStories.Controls (enum)
 import YogaStories.Story (story)
+
+type StandaloneToastRuntime =
+  { toast :: Foreign
+  , state :: Foreign
+  , heights :: Array Number
+  , setHeights :: Foreign
+  }
+
+foreign import standaloneToastRuntime :: String -> String -> StandaloneToastRuntime
 
 data Color = Default | Primary | Secondary | Success | Warning | Danger
 
@@ -44,6 +54,7 @@ toVariant = case _ of
 mkToast :: { title :: String, description :: String, color :: Color, variant :: Variant } -> JSX
 mkToast = component "ToastStory" \props -> React.do
   latestToastId /\ setLatestToastId <- React.useState' (Nothing :: Maybe String)
+  let runtime = standaloneToastRuntime props.title props.description
   pure $ provider {}
     [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex flex-col gap-4 max-w-lg" }
         [ Toast.toastProvider
@@ -60,6 +71,18 @@ mkToast = component "ToastStory" \props -> React.do
                 , variant: toVariant props.variant
                 , radius: T.RadiusMd
                 , severity: toColor props.color
+                , placement: T.PlacementBottomRight
+                , toast: runtime.toast
+                , state: runtime.state
+                , index: 0
+                , total: 1
+                , heights: runtime.heights
+                , setHeights: runtime.setHeights
+                , isRegionExpanded: false
+                , maxVisibleToasts: 4
+                , toastOffset: 0
+                , timeout: 0
+                , disableAnimation: true
                 , shouldShowTimeoutProgress: true
                 }
                 (text "")

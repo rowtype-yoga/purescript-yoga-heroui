@@ -20,6 +20,7 @@ type ToastProps r =
   , color :: Color
   , variant :: Variant
   , radius :: Radius
+  , placement :: Placement
   , endContent :: JSX
   , closeIcon :: JSX
   , timeout :: Int
@@ -32,6 +33,17 @@ type ToastProps r =
   , classNames :: Foreign
   , className :: String
   , onClose :: EffectFn1 Foreign Unit
+  , toast :: Foreign
+  , state :: Foreign
+  , index :: Int
+  , total :: Int
+  , heights :: Array Number
+  , setHeights :: Foreign
+  , isRegionExpanded :: Boolean
+  , maxVisibleToasts :: Int
+  , toastOffset :: Int
+  , disableAnimation :: Boolean
+  , isClosing :: Boolean
   | r
   )
 
@@ -44,7 +56,7 @@ toast
   -> JSX
 toast props kids = runFn4 createElementTransformImpl transforms Raw.toast props kids
   where
-  transforms = { color: colorToString, variant: variantToString, radius: radiusToString, severity: colorToString }
+  transforms = { color: colorToString, variant: variantToString, radius: radiusToString, placement: placementToString, severity: colorToString }
 
 type ToastProviderProps r =
   ( maxVisibleToasts :: Int
@@ -82,7 +94,7 @@ addToast
   -> Effect (Maybe String)
 addToast props = map toMaybe (runEffectFn1 addToastImpl (runFn2 transformPropsImpl transforms props))
   where
-  transforms = { color: colorToString, variant: variantToString, radius: radiusToString, severity: colorToString }
+  transforms = { color: colorToString, variant: variantToString, radius: radiusToString, placement: placementToString, severity: colorToString }
 
 foreign import closeToastImpl :: EffectFn1 String Unit
 
