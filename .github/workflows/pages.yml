@@ -36,6 +36,9 @@ jobs:
       - name: Install purs-backend-es
         run: bun add --global purs-backend-es
 
+      - name: Build PureScript output
+        run: spago build
+
       - name: Build Yoga Stories
         run: bunx yoga-stories build
 
