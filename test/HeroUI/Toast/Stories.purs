@@ -54,6 +54,7 @@ toVariant = case _ of
 mkToast :: { title :: String, description :: String, color :: Color, variant :: Variant } -> JSX
 mkToast = component "ToastStory" \props -> React.do
   latestToastId /\ setLatestToastId <- React.useState' (Nothing :: Maybe String)
+  status /\ setStatus <- React.useState' "No toast added yet"
   let runtime = standaloneToastRuntime props.title props.description
   pure $ provider {}
     [ div { className: "dark bg-background text-foreground p-6 rounded-lg flex flex-col gap-4 max-w-lg" }
@@ -90,27 +91,27 @@ mkToast = component "ToastStory" \props -> React.do
         , div { className: "flex flex-wrap items-center gap-2" }
             [ Btn.button
                 { color: T.Primary
-                , onPress: handler_ (showToast props setLatestToastId)
+                , onPress: handler_ (showToast props setLatestToastId setStatus)
                 }
                 (text "addToast")
             , Btn.button
                 { variant: T.Bordered
                 , isDisabled: latestToastId == Nothing
-                , onPress: handler_ (closeLatest latestToastId setLatestToastId)
+                , onPress: handler_ (closeLatest latestToastId setLatestToastId setStatus)
                 }
                 (text "closeToast")
             , Btn.button
                 { variant: T.Flat
                 , color: T.Danger
-                , onPress: handler_ (closeAll setLatestToastId)
+                , onPress: handler_ (closeAll setLatestToastId setStatus)
                 }
                 (text "closeAllToasts")
             ]
-        , div { className: "text-sm text-default-500" } (statusText latestToastId)
+        , div { className: "text-sm text-default-500" } (text status)
         ]
     ]
   where
-  showToast props setLatestToastId = do
+  showToast props setLatestToastId setStatus = do
     latestToastId <- Toast.addToast
       { title: text props.title
       , description: text props.description
@@ -122,21 +123,22 @@ mkToast = component "ToastStory" \props -> React.do
       , shouldShowTimeoutProgress: true
       }
     setLatestToastId latestToastId
+    case latestToastId of
+      Just toastId -> setStatus ("Latest toast id: " <> toastId)
+      Nothing -> setStatus "No toast id returned"
 
-  closeLatest latestToastId setLatestToastId = do
+  closeLatest latestToastId setLatestToastId setStatus = do
     case latestToastId of
       Just toastId -> do
         Toast.closeToast toastId
         setLatestToastId Nothing
-      Nothing -> pure unit
+        setStatus ("Closed toast id: " <> toastId)
+      Nothing -> setStatus "No tracked toast id to close"
 
-  closeAll setLatestToastId = do
+  closeAll setLatestToastId setStatus = do
     Toast.closeAllToasts
     setLatestToastId Nothing
-
-  statusText = case _ of
-    Just toastId -> text ("Latest toast id: " <> toastId)
-    Nothing -> text "No toast id yet"
+    setStatus "Closed all toasts"
 
 default :: JSX
 default = story "default" mkToast
