@@ -16,7 +16,7 @@ import HeroUI.Types as T
 import React.Basic.Hooks as React
 import React.TestingLibrary (cleanup, render)
 import Test.Spec (Spec, after_, describe, it)
-import Test.Spec.Assertions (shouldEqual)
+import Test.Spec.Assertions (shouldEqual, shouldNotEqual)
 import Test.Spec.Assertions.DOM (textContentShouldEqual)
 import Unsafe.Coerce (unsafeCoerce)
 import Yoga.React (component)
@@ -43,7 +43,9 @@ spec = after_ cleanup $ describe "purescript-yoga-heroui issue #1" do
     _ <- render toastHost
     mId <- liftEffect $ Toast.addToast { title: text "hi" }
     case mId of
-      Just id -> liftEffect $ Toast.closeToast id
+      Just id -> do
+        (id <> "") `shouldNotEqual` "() => addToast(opts)"
+        liftEffect $ Toast.closeToast id
       Nothing -> pure unit
     liftEffect Toast.closeAllToasts
 
